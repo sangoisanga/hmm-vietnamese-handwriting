@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be50431c-3f03-4e04-a862-57b102eee034" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/hmm-handwriting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hmm-handwriting.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/model_creation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/model_creation/create_word_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/character/character_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/character/character_classifier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,10 +17,12 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/hmm_handwriting$test.coverage" NAME="test Coverage Results" MODIFIED="1532503047010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_data" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_in_specialized_hmm_py.coverage" NAME="Unittests in specialized_hmm.py Coverage Results" MODIFIED="1532510123946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor Coverage Results" MODIFIED="1532505157720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_hmm_TestHMM.coverage" NAME="Unittests for hmm.TestHMM Coverage Results" MODIFIED="1532422199977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor_test_divide_into_segments.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor.test_divide_into_segments Coverage Results" MODIFIED="1532503114654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_hmm_TestHMM_test_zeros.coverage" NAME="Unittests for hmm.TestHMM.test_zeros Coverage Results" MODIFIED="1532422165891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_specialized_hmm_TestHMM.coverage" NAME="Unittests for specialized_hmm.TestHMM Coverage Results" MODIFIED="1532513474233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_simple_image_feature_extrator_TestSimpleImageFeatureExtractor_test_extract_label_examples_tuples_for_library.coverage" NAME="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_label_examples_tuples_for_library Coverage Results" MODIFIED="1532502822481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor Coverage Results" MODIFIED="1532422092690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list Coverage Results" MODIFIED="1532504573854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
@@ -28,32 +32,34 @@
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_word_classifier_TestWordClassifier.coverage" NAME="Unittests for word_classifier.TestWordClassifier Coverage Results" MODIFIED="1532422298447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/word" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_simple_image_feature_extrator_TestSimpleImageFeatureExtractor_test_extract_feature_string.coverage" NAME="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_string Coverage Results" MODIFIED="1532491166381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list Coverage Results" MODIFIED="1532505152393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_in_character_classifier_py.coverage" NAME="Unittests in character_classifier.py Coverage Results" MODIFIED="1532511329970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/character" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_image_preprocessor_TestImagePreprocessor_test_image_scale_image.coverage" NAME="Unittests for image_preprocessor.TestImagePreprocessor.test_image_scale_image Coverage Results" MODIFIED="1532503104571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_specialized_hmm_TestHMM.coverage" NAME="Unittests for specialized_hmm.TestHMM Coverage Results" MODIFIED="1532422215752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$create_character_classifier.coverage" NAME="create_character_classifier Coverage Results" MODIFIED="1532513509029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/model_creation" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_simple_image_feature_extrator_TestSimpleImageFeatureExtractor_test_extract_feature_strings_for_dir.coverage" NAME="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir Coverage Results" MODIFIED="1532501556550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
-    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration.coverage" NAME="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration Coverage Results" MODIFIED="1532505568335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration.coverage" NAME="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration Coverage Results" MODIFIED="1532509521293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_word_examples_generator_TestWordExampleGenerator.coverage" NAME="Unittests for word_examples_generator.TestWordExampleGenerator Coverage Results" MODIFIED="1532422286801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/word" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_hmm_TestHMM_test_forward.coverage" NAME="Unittests for hmm.TestHMM.test_forward Coverage Results" MODIFIED="1532422180633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="simple_image_feature_extrator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
+      <file leaf-file-name="create_character_classifier.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2669">
-              <caret line="165" selection-start-line="165" selection-end-line="165" />
+            <state relative-caret-position="363">
+              <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_example_dir.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/feature/image_example_dir.py">
+      <file leaf-file-name="image_preprocessor.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-116">
-              <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="340">
+              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -89,12 +95,14 @@
         <option value="$PROJECT_DIR$/main/feature/hmm.py" />
         <option value="$PROJECT_DIR$/main/word/word_examples_generator.py" />
         <option value="$PROJECT_DIR$/main/word/word_classifier.py" />
-        <option value="$PROJECT_DIR$/main/character/character_classifier.py" />
         <option value="$PROJECT_DIR$/main/__run__.py" />
-        <option value="$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py" />
         <option value="$PROJECT_DIR$/test_data/test.py" />
-        <option value="$PROJECT_DIR$/main/feature/image_preprocessor.py" />
         <option value="$PROJECT_DIR$/main/feature/image_example_dir.py" />
+        <option value="$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py" />
+        <option value="$PROJECT_DIR$/main/character/character_classifier.py" />
+        <option value="$PROJECT_DIR$/main/model_creation/create_word_classifier.py" />
+        <option value="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" />
+        <option value="$PROJECT_DIR$/main/feature/image_preprocessor.py" />
       </list>
     </option>
   </component>
@@ -108,10 +116,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1358" />
     <option name="y" value="-8" />
-    <option name="width" value="1320" />
-    <option name="height" value="784" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -136,6 +144,12 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="feature" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hmm-vietnamese-handwriting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hmm-vietnamese-handwriting" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="model_creation" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -151,12 +165,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Sang\Desktop\training\hmm-handwriting" />
-      <recent name="C:\Users\Sang\Desktop\training\hmm-handwriting\main\character" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sang\Desktop\training\hmm-handwriting\main\feature" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sang\Desktop\training\hmm-vietnamese-handwriting\main\model_creation" />
+      <recent name="C:\Users\Sang\Desktop\training\hmm-handwriting" />
+      <recent name="C:\Users\Sang\Desktop\training\hmm-handwriting\main\character" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -171,7 +186,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration">
+  <component name="RunManager" selected="Python.create_character_classifier">
+    <configuration name="create_character_classifier" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="hmm-handwriting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/model_creation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="hmm" type="PythonConfigurationType" factoryName="Python">
       <module name="hmm-handwriting" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,7 +239,7 @@
       <option name="_new_target" value="&quot;image_example_dir.TestImageExampleDir.test_image_example_dir_iteration&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Unittests for image_preprocessor.TestImagePreprocessor" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for specialized_hmm.TestHMM" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="hmm-handwriting" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -216,24 +250,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;image_preprocessor.TestImagePreprocessor&quot;" />
+      <option name="_new_target" value="&quot;specialized_hmm.TestHMM&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_divide_into_segments" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in character_classifier.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="hmm-handwriting" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/feature" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/character" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;image_preprocessor.TestImagePreprocessor.test_divide_into_segments&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/main/character/character_classifier.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in specialized_hmm.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="hmm-handwriting" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -244,38 +278,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
-    <configuration name="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="hmm-handwriting" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/feature" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/main/feature/specialized_hmm.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list>
       <item itemvalue="Python.hmm" />
-      <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" />
-      <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor.test_divide_into_segments" />
-      <item itemvalue="Python tests.Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir" />
       <item itemvalue="Python tests.Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" />
-      <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor" />
+      <item itemvalue="Python tests.Unittests in specialized_hmm.py" />
+      <item itemvalue="Python tests.Unittests in character_classifier.py" />
+      <item itemvalue="Python.create_character_classifier" />
+      <item itemvalue="Python tests.Unittests for specialized_hmm.TestHMM" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.create_character_classifier" />
+        <item itemvalue="Python tests.Unittests for specialized_hmm.TestHMM" />
+        <item itemvalue="Python tests.Unittests in character_classifier.py" />
+        <item itemvalue="Python tests.Unittests in specialized_hmm.py" />
         <item itemvalue="Python tests.Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" />
-        <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor" />
-        <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" />
-        <item itemvalue="Python tests.Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir" />
-        <item itemvalue="Python tests.Unittests for image_preprocessor.TestImagePreprocessor.test_divide_into_segments" />
       </list>
     </recent_temporary>
   </component>
@@ -290,30 +310,17 @@
       <option name="presentableId" value="Default" />
       <updated>1532329264176</updated>
     </task>
+    <task id="LOCAL-00001" summary="Finish preprocessing image">
+      <created>1532510023587</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1532510023587</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 35m 33s.xml">
-      <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 35m 38s.xml">
-      <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 39m 34s.xml">
-      <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 41m 44s.xml">
-      <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 42m 54s.xml">
-      <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_simple_image_feature_extrator_TestSimpleImageFeatureExtractor_test_extract_feature_strings_for_dir - 2018.07.25 at 14h 51m 09s.xml">
-      <configuration name="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration - 2018.07.25 at 14h 52m 15s.xml">
-      <configuration name="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_image_preprocessor_TestImagePreprocessor_test_extract_sorted_component_size_list - 2018.07.25 at 14h 52m 32s.xml">
       <configuration name="Unittests for image_preprocessor.TestImagePreprocessor.test_extract_sorted_component_size_list" configurationId="tests" />
     </history-entry>
@@ -322,6 +329,27 @@
     </history-entry>
     <history-entry file="Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration - 2018.07.25 at 14h 59m 34s.xml">
       <configuration name="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration - 2018.07.25 at 15h 42m 11s.xml">
+      <configuration name="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration - 2018.07.25 at 16h 05m 01s.xml">
+      <configuration name="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration - 2018.07.25 at 16h 05m 40s.xml">
+      <configuration name="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_specialized_hmm_py - 2018.07.25 at 16h 15m 24s.xml">
+      <configuration name="Unittests in specialized_hmm.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_character_classifier_py - 2018.07.25 at 16h 34m 28s.xml">
+      <configuration name="Unittests in character_classifier.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_character_classifier_py - 2018.07.25 at 16h 35m 47s.xml">
+      <configuration name="Unittests in character_classifier.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_specialized_hmm_TestHMM - 2018.07.25 at 17h 11m 14s.xml">
+      <configuration name="Unittests for specialized_hmm.TestHMM" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -334,23 +362,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
+    <frame x="1358" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972136" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32972136" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3292683" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32972136" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30495358" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30487806" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972136" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26984128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18573265" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32936507" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993808" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.398374" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -392,49 +420,21 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Finish preprocessing image" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish preprocessing image" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="17" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="115" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="109" column="31" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/image_example_dir.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -463,6 +463,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -516,38 +519,10 @@
     <entry file="file://$PROJECT_DIR$/word_examples_for_test/A/A_1311957354024.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/character/character_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/word/word_hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3009">
-          <caret line="19" column="49" lean-forward="true" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/word/word_examples_generator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11">
           <caret line="70" column="17" lean-forward="true" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/word/word_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -660,45 +635,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="330" column="12" selection-start-line="330" selection-start-column="12" selection-end-line="330" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/__run__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/main/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1249" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2720">
+          <caret line="163" column="8" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/word/word_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="48" column="15" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2669">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="17">
+          <caret line="47" column="50" lean-forward="true" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
+    <entry file="file://$PROJECT_DIR$/main/character/character_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="101" column="62" lean-forward="true" selection-start-line="101" selection-start-column="62" selection-end-line="101" selection-end-column="62" />
+        <state relative-caret-position="312">
+          <caret line="111" column="26" lean-forward="true" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/main/word/word_hmm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1249" />
+        <state relative-caret-position="323">
+          <caret line="58" column="19" lean-forward="true" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/model_creation/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/model_creation/create_word_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/feature/image_example_dir.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-116">
-          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        <state relative-caret-position="622">
+          <caret line="63" column="19" lean-forward="true" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1515763827/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="414" column="4" selection-start-line="414" selection-start-column="4" selection-end-line="414" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

@@ -1,6 +1,8 @@
+import os
 import shutil
 import unittest
 
+from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtractor
 from main.feature.specialized_hmm import SpecializedHMM
 from main.word.word_classifier import WordClassifier
 
@@ -81,22 +83,22 @@ class TestCharacterClassifier(unittest.TestCase):
     def test_with_two_characters(self):
         # test with just two letters so A and B are copied to a
         # special dir that is deleted after the test
-        base_dir = File("../../character_examples")
-        test_dir = File(base_dir, "test")
-        a_dir = File(base_dir, "A")
-        b_dir = File(base_dir, "B")
-        shutil.copytree(a_dir.getPath(), File(test_dir, "A").getPath())
-        shutil.copytree(b_dir.getPath(), File(test_dir, "B").getPath())
-        extracor = SimpleImageFeatureExtractor(nr_of_divisions=7,
+        base_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
+        test_dir = os.path.join(base_dir, 'test')
+        a_dir = os.path.join(base_dir, 'A')
+        b_dir = os.path.join(base_dir, 'B')
+        shutil.copytree(a_dir, os.path.join(test_dir, 'A'))
+        shutil.copytree(b_dir, os.path.join(test_dir, 'B'))
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                size_classification_factor=1.3)
         # Extract features
-        training_examples, test_examples = extracor.extract_training_and_test_examples(test_dir.getPath(), 90, 10)
-        # print("training examples", training_examples)
-        # print("testing examples", test_examples)
+        training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
+        print("training examples", training_examples)
+        print("testing examples", test_examples)
         classifier = CharacterClassifier(training_examples,
                                          nr_of_hmms_to_try=1,
                                          fraction_of_examples_for_test=0.3,
-                                         feature_extractor=extracor,
+                                         feature_extractor=extractor,
                                          train_with_examples=False)
         before = classifier.test(test_examples)
         # Test serialization
@@ -110,7 +112,7 @@ class TestCharacterClassifier(unittest.TestCase):
         classifier.train()
         after = classifier.test(test_examples)
         print("test_with_two_characters", "before", before, "after", after)
-        shutil.rmtree(test_dir.getPath())
+        shutil.rmtree(test_dir)
 
 
 if __name__ == "__main__":
