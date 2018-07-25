@@ -155,7 +155,7 @@ class SimpleImageFeatureExtractor(object):
         label_test_example_tuples = []
         for dir_name in example_dirs:
             label = dir_name
-            dir = File(File(library_path), dir_name).getCanonicalPath()
+            dir = os.path.join(library_path, dir_name)
             training_examples, test_examples = self.extract_feature_strings_for_dir(dir,
                                                                                     nr_of_training_examples,
                                                                                     nr_of_test_examples)

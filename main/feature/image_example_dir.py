@@ -53,7 +53,7 @@ class TestImageExampleDir(unittest.TestCase):
     def test_image_example_dir_iteration(self):
         example_dir = os.path.join(os.path.abspath('../..'), 'word_examples_for_test', 'A')
         list_image = glob.glob1(example_dir, '*.png')
-        image_example_dir = ImageExampleDir(example_dir.getCanonicalPath())
+        image_example_dir = ImageExampleDir(example_dir)
         for label, image in image_example_dir:
             if label != "A":
                 raise ValueError("The label of the examples in this dir should be A")
