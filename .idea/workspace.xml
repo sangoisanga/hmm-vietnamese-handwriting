@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be50431c-3f03-4e04-a862-57b102eee034" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/main/model_creation/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/model_creation/create_word_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/character/character_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/character/character_classifier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,25 +39,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create_character_classifier.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create_character_classifier.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+            <state relative-caret-position="311">
+              <caret line="32" column="22" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="22" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="image_preprocessor.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,6 +63,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>shape</find>
+      <find>in</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -101,8 +86,8 @@
         <option value="$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py" />
         <option value="$PROJECT_DIR$/main/character/character_classifier.py" />
         <option value="$PROJECT_DIR$/main/model_creation/create_word_classifier.py" />
-        <option value="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" />
         <option value="$PROJECT_DIR$/main/feature/image_preprocessor.py" />
+        <option value="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" />
       </list>
     </option>
   </component>
@@ -317,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532510023587</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add model creation, save data to file&#10;And&#10;fucking BUG">
+      <created>1532514043840</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1532514043840</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -363,16 +355,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972136" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3292683" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3292683" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32972136" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30487806" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30487806" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32972136" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18573265" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18573265" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32936507" />
@@ -422,7 +413,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Finish preprocessing image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish preprocessing image" />
+    <MESSAGE value="Add model creation, save data to file&#10;And&#10;fucking BUG" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add model creation, save data to file&#10;And&#10;fucking BUG" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -435,13 +427,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -730,22 +715,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/feature/image_preprocessor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
