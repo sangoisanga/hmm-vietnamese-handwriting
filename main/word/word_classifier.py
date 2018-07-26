@@ -1,4 +1,5 @@
 import unittest
+from copy import deepcopy
 
 from main.feature.specialized_hmm import SpecializedHMM
 from main.word.word_examples_generator import get_example_alphabet, generate_examples_for_words
@@ -112,8 +113,16 @@ class WordClassifier(object):
         for hmm in self.hmms_for_words:
             score = hmm.test([string])
             scores.append(score)
-        max_score = max(scores)
-        return self.words[scores.index(max_score)]
+
+        # max_score = max(scores)
+        # return self.words[scores.index(max_score)]
+        sorted_list = deepcopy(scores)
+        sorted_list.sort()
+        sorted_list.reverse()
+        index = list(map(scores.index, sorted_list[0:3]))
+        word_return = (self.words[index[0]], self.words[index[1]], self.words[index[2]])
+        return word_return
+
 
     def test(self, test_examples):
         '''

@@ -52,7 +52,7 @@ class CharacterClassifier(WordClassifier):
 
     def classify_character_string(self, string):
         classification = super(CharacterClassifier, self).classify(string)
-        return classification[0]
+        return (classification[0], classification[1], classification[2])
 
     def classify_image(self, buffered_image):
         string = self.feature_extractor.extract_feature_string(buffered_image)
