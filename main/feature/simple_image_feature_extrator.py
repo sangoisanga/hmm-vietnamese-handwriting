@@ -184,7 +184,7 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
     def test_extract_feature_strings_for_dir(self):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                 size_classification_factor=1.3)
-        example_dir_path = os.path.join(os.path.abspath('../..'), 'character_examples', 'A')
+        example_dir_path = os.path.join(os.path.abspath('../..'), 'character_examples', 'I')
         training_examples, test_examples = extractor.extract_feature_strings_for_dir(
             example_dir_path,
             nr_of_training_examples=90,

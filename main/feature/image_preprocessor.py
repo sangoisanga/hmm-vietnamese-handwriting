@@ -1,7 +1,7 @@
-import glob
 import os
 import sys
 import unittest
+
 import cv2
 
 
@@ -10,11 +10,12 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
 
     # Get extreem values from the image
     max_x = 0
-    min_x = height
+    min_x = width
     max_y = 0
-    min_y = width
-    for x in range(0, height):
-        for y in range(0, width):
+    min_y = height
+
+    for x in range(0, width):
+        for y in range(0, height):
 
             if buffered_image[x][y] != 255:
                 if x > max_x:
@@ -26,15 +27,23 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
                 if y < min_y:
                     min_y = y
     # Cut out the part of image containing colored pixels
-    sub_image = buffered_image[min_y:max_y, min_x:max_x]
+    if min_x == max_x:
+        max_x += 1
+    if min_y == max_y:
+        max_y += 1
+    sub_image = buffered_image[min_x:max_x, min_y:max_y]
+
+    if sub_image is None:
+        raise ValueError()
 
     # Scale the image
     resize_image = cv2.resize(sub_image, (width, height), interpolation=cv2.INTER_CUBIC)
+
     return resize_image
 
 
 def divide_into_segments(nr_of_segments, image_buffer):
-    height, width = image_buffer.shape
+    height, width = image_buffer.shape[:2]
     segment_width = width / nr_of_segments
 
     def create_segment(start_pos):
@@ -61,7 +70,7 @@ def extract_sorted_component_size_list(image_buffer):
 
     # make sure we don't run out of stack space
     old_rec_limit = sys.getrecursionlimit()
-    sys.setrecursionlimit(height*width)
+    sys.setrecursionlimit(10000)
     # Remember which pixels have been processed
     processed_colored_pixels = set()
 
@@ -108,9 +117,11 @@ def extract_sorted_component_size_list(image_buffer):
 class TestImagePreprocessor(unittest.TestCase):
 
     def get_example_image(self):
-        example_dir = os.path.join(os.path.abspath('../..'), 'character_examples', 'A')
-        list_image = glob.glob1(example_dir, '*.png')
-        image_path_example = os.path.join(example_dir, list_image[0])
+        # example_dir = os.path.join(os.path.abspath('../..'), 'character_examples', 'A')
+        # list_image = glob.glob1(example_dir, '*.png')
+        # image_path_example = os.path.join(example_dir, list_image[0])
+        example_dir = os.path.join(os.path.abspath('../..'), 'test_data')
+        image_path_example = os.path.join(example_dir, 'not_scale.png')
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 
@@ -126,8 +137,8 @@ class TestImagePreprocessor(unittest.TestCase):
         self.write_image_to_disk("test.png", scaled_image)
 
     def test_divide_into_segments(self):
-        orginal_image = self.get_example_image()
-        image = scale_to_fill(orginal_image)
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
         segments = divide_into_segments(5, image)
         i = 0
         for s in segments:
@@ -135,8 +146,8 @@ class TestImagePreprocessor(unittest.TestCase):
             i = i + 1
 
     def test_extract_sorted_component_size_list(self):
-        orginal_image = self.get_example_image()
-        image = scale_to_fill(orginal_image)
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
         segments = divide_into_segments(5, image)
         for s in segments:
             component_size_list = extract_sorted_component_size_list(s)

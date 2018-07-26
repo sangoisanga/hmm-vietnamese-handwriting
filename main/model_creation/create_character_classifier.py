@@ -1,3 +1,7 @@
+import sys
+
+sys.path.append("../test_data")
+sys.path.append("..")
 import os
 
 from main.character.character_classifier import CharacterClassifier
@@ -16,6 +20,10 @@ def create_character_classifier(save_to_file_path):
     training_examples, test_examples = extractor.extract_training_and_test_examples(example_dir,
                                                                                     nr_of_training_examples,
                                                                                     nr_of_test_examples)
+
+    print training_examples
+    print test_examples
+
     classifier = CharacterClassifier(training_examples,
                                      nr_of_hmms_to_try=1,
                                      fraction_of_examples_for_test=0,
