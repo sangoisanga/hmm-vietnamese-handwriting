@@ -26,12 +26,12 @@ class CharacterClassifier(WordClassifier):
         if from_string_string != None:
             # init from string
             # "\n\n"+ in the next row is for jython bug 1469
-            feature_extractor_parameters, classifer_string = eval("\n\n" + from_string_string)
+            feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
             nr_of_divisions, size_classification_factor = feature_extractor_parameters
             self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
                                                                  size_classification_factor)
             self.nr_of_segments = nr_of_divisions
-            super(CharacterClassifier, self).__init__(from_string_string=classifer_string)
+            super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
         # Feature extractor is voluntary but is necessary if the classify_image
         # method shall be used

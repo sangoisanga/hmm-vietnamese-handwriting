@@ -1,7 +1,3 @@
-import sys
-
-sys.path.append("../test_data")
-sys.path.append("..")
 import os
 
 from main.character.character_classifier import CharacterClassifier
