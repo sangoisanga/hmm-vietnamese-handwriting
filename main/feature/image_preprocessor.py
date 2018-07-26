@@ -10,13 +10,13 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
 
     # Get extreem values from the image
     max_x = 0
-    min_x = width
+    min_x = height
     max_y = 0
-    min_y = height
-    for x in range(0, width):
-        for y in range(0, height):
-            color = buffered_image[x][y] == 0
-            if color:
+    min_y = width
+    for x in range(0, height):
+        for y in range(0, width):
+
+            if buffered_image[x][y] != 255:
                 if x > max_x:
                     max_x = x
                 if x < min_x:
@@ -26,7 +26,7 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
                 if y < min_y:
                     min_y = y
     # Cut out the part of image containing colored pixels
-    sub_image = buffered_image[min_x:max_x, min_y:max_y]
+    sub_image = buffered_image[min_y:max_y, min_x:max_x]
 
     # Scale the image
     resize_image = cv2.resize(sub_image, (width, height), interpolation=cv2.INTER_CUBIC)
@@ -61,7 +61,7 @@ def extract_sorted_component_size_list(image_buffer):
 
     # make sure we don't run out of stack space
     old_rec_limit = sys.getrecursionlimit()
-    sys.setrecursionlimit(width * height)
+    sys.setrecursionlimit(height*width)
     # Remember which pixels have been processed
     processed_colored_pixels = set()
 

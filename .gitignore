@@ -1,6 +1,7 @@
 #My gitignore
 word_examples_for_test/
 character_examples/
+.idea/
 
 #Auto gen gitignore
 # Byte-compiled / optimized / DLL files
