@@ -1,7 +1,7 @@
-import unittest
 import logging
-import random
 import math
+import random
+import unittest
 
 
 def zeros_3d(x, y, z):
@@ -105,7 +105,7 @@ class HMM(object):
         T = len(O)
         self.calc_forward(O)
         beta = zeros(T, self.N)
-        scaling_factor = self.scaling_factor
+        scaling_factor = self.scaling_fact
         # initialization
         for i in range(self.N):
             beta[T - 1][i] = 1.0

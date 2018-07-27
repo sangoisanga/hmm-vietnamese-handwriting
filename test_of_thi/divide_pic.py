@@ -42,7 +42,7 @@ def save_image(name, list_image):
 
 if __name__ == "__main__":
 
-    pic1 = "Q.jpg"
+    pic1 = "H.jpg"
     name = pic1[0:pic1.index('.')]
     # name = "V"
     img = cv2.imread(pic1)
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     a = a1 +a2 +a3
     '''
 
-    a = devide_width(img, 10)
+    a = devide_width(img, 11)
     temp = []
     for i in range(len(a)):
         temp.extend(devide_hight(a[i], 4))
