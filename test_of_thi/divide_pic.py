@@ -42,15 +42,31 @@ def save_image(name, list_image):
 
 if __name__ == "__main__":
 
-    pic = "M.jpg"
-    name = pic[0:pic.index('.')]
-    img = cv2.imread(pic)
+    pic1 = "Q.jpg"
+    name = pic1[0:pic1.index('.')]
+    # name = "V"
+    img = cv2.imread(pic1)
+
+    '''
+    pic2 = "V2.jpg"
+    img2 = cv2.imread(pic2)
+
+    pic3 = "V3.jpg"
+    img3 = cv2.imread(pic3)
+
+
+    a1 = devide_width(img, 2)
+    a2 = devide_width(img2, 5)
+    a3 = devide_width(img3, 3)
+
+    a = a1 +a2 +a3
+    '''
 
     a = devide_width(img, 10)
-
     temp = []
-    for i in range(10):
+    for i in range(len(a)):
         temp.extend(devide_hight(a[i], 4))
+
 
     save_image(name, temp)
 

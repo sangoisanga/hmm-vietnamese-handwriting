@@ -2,10 +2,394 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be50431c-3f03-4e04-a862-57b102eee034" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/N39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/O39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/P39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Q32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/R39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/S39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/T39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U33.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U41.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U43.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U49.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U52.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U53.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U59.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U61.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U63.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/U65.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V33.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/V39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/X39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Y39.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_of_thi/all/Z39.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/__run__.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/__run__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/model_creation/character_classifier.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/model_creation/create_character_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_of_thi/divide_pic.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_of_thi/divide_pic.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,45 +424,49 @@
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_specialized_hmm_TestHMM.coverage" NAME="Unittests for specialized_hmm.TestHMM Coverage Results" MODIFIED="1532422215752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_simple_image_feature_extrator_TestSimpleImageFeatureExtractor_test_extract_feature_strings_for_dir.coverage" NAME="Unittests for simple_image_feature_extrator.TestSimpleImageFeatureExtractor.test_extract_feature_strings_for_dir Coverage Results" MODIFIED="1532501556550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$hmm.coverage" NAME="hmm Coverage Results" MODIFIED="1532598858878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
-    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$divide_pic.coverage" NAME="divide_pic Coverage Results" MODIFIED="1532660734444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_of_thi" />
+    <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$divide_pic.coverage" NAME="divide_pic Coverage Results" MODIFIED="1532669919481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test_of_thi" />
     <SUITE FILE_PATH="coverage/hmm_vietnamese_handwriting$Unittests_for_image_example_dir_TestImageExampleDir_test_image_example_dir_iteration.coverage" NAME="Unittests for image_example_dir.TestImageExampleDir.test_image_example_dir_iteration Coverage Results" MODIFIED="1532580498367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_word_examples_generator_TestWordExampleGenerator.coverage" NAME="Unittests for word_examples_generator.TestWordExampleGenerator Coverage Results" MODIFIED="1532422286801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/word" />
     <SUITE FILE_PATH="coverage/hmm_handwriting$Unittests_for_hmm_TestHMM_test_forward.coverage" NAME="Unittests for hmm.TestHMM.test_forward Coverage Results" MODIFIED="1532422180633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main/feature" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create_character_classifier.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
+      <file leaf-file-name="hmm.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+            <state relative-caret-position="51">
+              <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#86#173#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_example_dir.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/feature/image_example_dir.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="simple_image_feature_extrator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-782">
-              <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="divide_pic.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="divide_pic.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_of_thi/divide_pic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+            <state relative-caret-position="850">
+              <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="specialized_hmm.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="word_hmm.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/word/word_hmm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -172,12 +560,7 @@
               <item name="hmm-vietnamese-handwriting" type="b2602c69:ProjectViewProjectNode" />
               <item name="hmm-vietnamese-handwriting" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="model_creation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hmm-vietnamese-handwriting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hmm-vietnamese-handwriting" type="462c0819:PsiDirectoryNode" />
-              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+              <item name="word" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hmm-vietnamese-handwriting" type="b2602c69:ProjectViewProjectNode" />
@@ -404,7 +787,21 @@
       <option name="project" value="LOCAL" />
       <updated>1532594897179</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="make my own test">
+      <created>1532661303394</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1532661303394</updated>
+    </task>
+    <task id="LOCAL-00009" summary="make my own test">
+      <created>1532661414417</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1532661414417</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -455,15 +852,15 @@
       <window_info anchor="bottom" id="TODO" order="7" weight="0.3292683" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50064266" side_tool="true" weight="0.47696477" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4993573" weight="0.47696477" />
-      <window_info anchor="bottom" id="Python Console" order="11" weight="0.32972136" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4993573" visible="true" weight="0.3495935" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.4993573" visible="true" weight="0.47696477" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.3292683" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4993573" weight="0.3495935" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32972136" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49791667" visible="true" weight="0.1773779" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.52590674" visible="true" weight="0.1773779" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="5" weight="0.32936507" />
-      <window_info id="Structure" order="1" sideWeight="0.50208336" side_tool="true" visible="true" weight="0.1773779" />
+      <window_info id="Structure" order="1" sideWeight="0.47409326" side_tool="true" visible="true" weight="0.1773779" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39701897" />
       <window_info active="true" anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.32972136" />
@@ -516,7 +913,8 @@
     <MESSAGE value="ready to test" />
     <MESSAGE value="finish test but too many errors" />
     <MESSAGE value="upload test" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload test" />
+    <MESSAGE value="make my own test" />
+    <option name="LAST_COMMIT_MESSAGE" value="make my own test" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -538,9 +936,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/character_examples/A/A_1310995379423.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_data/segment2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -630,13 +1025,6 @@
     <entry file="file://$PROJECT_DIR$/main/model_creation/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-204" />
@@ -707,20 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/word/word_hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="127" column="19" lean-forward="true" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_data/segment1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -760,10 +1134,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
+    <entry file="file://$PROJECT_DIR$/test_of_thi/A.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_of_tuan/a1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
-          <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="148" selection-end-column="8" />
+        <state relative-caret-position="187">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -774,20 +1154,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/model_creation/create_character_classifier.py">
+    <entry file="file://$PROJECT_DIR$/main/feature/simple_image_feature_extrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+        <state relative-caret-position="3162">
+          <caret line="206" lean-forward="true" selection-start-line="206" selection-end-line="206" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_of_thi/A.jpg">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/main/word/word_hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/feature/hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#86#173#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_of_thi/divide_pic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="850">
+          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/feature/specialized_hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
