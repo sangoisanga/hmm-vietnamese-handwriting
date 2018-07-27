@@ -5,13 +5,13 @@ from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtract
 from main.feature.specialized_hmm import SpecializedHMM
 
 
-def create_character_classifier(save_to_file_path):
+def create_character_classifier(save_to_file_path, factor):
     example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
     nr_of_training_examples = 100
     nr_of_test_examples = 0
 
     extractor = SimpleImageFeatureExtractor(nr_of_divisions=11,
-                                            size_classification_factor=4.6)
+                                            size_classification_factor=factor)
 
     training_examples, test_examples = extractor.extract_training_and_test_examples(example_dir,
                                                                                     nr_of_training_examples,
@@ -35,4 +35,5 @@ def create_character_classifier(save_to_file_path):
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier")
+    create_character_classifier("character_classifier_4-4", 4.4)
+    create_character_classifier("character_classifier_4-6", 4.6)
