@@ -120,7 +120,9 @@ class WordClassifier(object):
         sorted_list.sort()
         sorted_list.reverse()
         index = list(map(scores.index, sorted_list[0:3]))
-        word_return = (self.words[index[0]], self.words[index[1]], self.words[index[2]])
+        word_return = ((self.words[index[0]], sorted_list[0]),
+                       (self.words[index[1]], sorted_list[0]),
+                       (self.words[index[2]], sorted_list[0]))
         return word_return
 
 

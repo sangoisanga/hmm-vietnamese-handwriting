@@ -1,7 +1,7 @@
-import unittest
 import logging
-import random
 import math
+import random
+import unittest
 
 
 def zeros_3d(x, y, z):
@@ -78,6 +78,8 @@ class HMM(object):
         # initalize
         t = 0
         alpha[t] = [self.pi[i] * self.B[i][O[t]] for i in range(self.N)]
+
+        self.log.debug(str(alpha[t]))
 
         def append_scaling_to_scaling_factor_for_t(t):
             sum_alpha = sum(alpha[t - 1])
@@ -331,7 +333,8 @@ class TestHMM(unittest.TestCase):
         ''' fixme '''
         h = HMM(self.pi, self.A, self.B, self.V)
         h.log.setLevel(logging.DEBUG)
-        h.calc_forward([0, 0])
+        a = h.calc_forward([0, 0])
+        print a
 
     def test_backward(self):
         '''fixme '''

@@ -35,5 +35,4 @@ def create_character_classifier(save_to_file_path, factor):
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_4-4", 4.4)
     create_character_classifier("character_classifier_4-6", 4.6)
