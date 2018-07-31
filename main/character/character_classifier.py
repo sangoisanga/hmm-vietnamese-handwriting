@@ -26,7 +26,8 @@ class CharacterClassifier(WordClassifier):
         if from_string_string != None:
             # init from string
             # "\n\n"+ in the next row is for jython bug 1469
-            feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
+            #feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
+            feature_extractor_parameters, classifier_string = eval(from_string_string)
             nr_of_divisions, size_classification_factor = feature_extractor_parameters
             self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
                                                                  size_classification_factor)
