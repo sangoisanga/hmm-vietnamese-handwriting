@@ -114,6 +114,36 @@ def extract_sorted_component_size_list(image_buffer):
     return component_lengths
 
 
+def extract_orientation_upper_contour(image_buffer):
+
+    height, width = image_buffer.shape[:2]
+    max_height_left = None
+    max_height_right = None
+
+    max_height_left_pos = None
+    max_height_right_pos = None
+
+    for i in range(width):
+        if max_height_left is None:
+            for j in range(height):
+                if image_buffer[j][i] != 255:
+                    max_height_left = j
+                    max_height_left_pos = i
+                    break
+        if max_height_right is None:
+            temp_i = -(i + 1)
+            for j in range(height):
+                if image_buffer[j][temp_i] != 255:
+                    max_height_right = j
+                    max_height_right_pos = temp_i
+                    break
+
+        if max_height_right is not None and max_height_left is not None:
+            break
+
+    return (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+
+
 class TestImagePreprocessor(unittest.TestCase):
 
     def get_example_image(self):
@@ -153,6 +183,13 @@ class TestImagePreprocessor(unittest.TestCase):
             component_size_list = extract_sorted_component_size_list(s)
             print(component_size_list)
 
+    def test_extract_orientation_upper_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments(5, image)
+        for s in segments:
+            orientation = extract_orientation_upper_contour(s)
+            print orientation
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']
