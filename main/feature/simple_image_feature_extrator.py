@@ -1,12 +1,13 @@
 import glob
 import os
 import unittest
+import math
 from random import random
 
 import cv2
 
 from main.feature.image_example_dir import ImageExampleDir
-from main.feature.image_preprocessor import scale_to_fill, divide_into_segments, extract_sorted_component_size_list
+from main.feature.image_preprocessor import scale_to_fill, divide_into_segments, extract_sorted_component_size_list, extract_upper_contour
 
 
 class SimpleImageFeatureExtractor(object):
@@ -15,6 +16,12 @@ class SimpleImageFeatureExtractor(object):
     may be used as training observations for a HMM.
     '''
     feature_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    feature_upper_contour_ids = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+        'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4',
+        '5', '6',
+    ]
     feature_pattern_to_id = {"LLL": "a",
                              "LLS": "b",
                              "LSS": "c",
@@ -25,10 +32,18 @@ class SimpleImageFeatureExtractor(object):
                              "SSN": "h",
                              "SNN": "i",
                              "NNN": "j"}
+    feature_upper_contour_pattern_to_id = {
+        'LLLLL':'a', 'LLLLS':'b', 'LLLSL':'c', 'LLLSS':'d', 'LLSLL':'e', 'LLSLS':'f', 'LLSSL':'g',
+        'LLSSS':'h', 'LSLLL':'i', 'LSLLS':'j', 'LSLSL':'k', 'LSLSS':'l', 'LSSLL':'m', 'LSSLS':'n',
+        'LSSSL':'o', 'LSSSS':'p', 'SLLLL':'q', 'SLLLS':'r', 'SLLSL':'s', 'SLLSS':'t', 'SLSLL':'u',
+        'SLSLS':'v', 'SLSSL':'w', 'SLSSS':'x', 'SSLLL':'y', 'SSLLS':'z', 'SSLSL':'1', 'SSLSS':'2',
+        'SSSLL':'3', 'SSSLS':'4', 'SSSSL':'5', 'SSSSS':'6'
+    }
 
     def __init__(self,
-                 nr_of_divisions=7,
-                 size_classification_factor=1.3):
+                 nr_of_divisions=7, upper_contour_divisions = 5,
+                 size_classification_factor=1.3, upper_contour_threshold = 0.5
+                 ):
         '''
         Parameters:
         * nr_of_divisions - Number of times to divide the image vertically
@@ -61,6 +76,8 @@ class SimpleImageFeatureExtractor(object):
         '''
         self.nr_of_divisions = nr_of_divisions
         self.size_classification_factor = size_classification_factor
+        self.upper_contour_divisions = upper_contour_divisions
+        self.upper_contour_threshold = upper_contour_threshold
 
     def extract_feature_string(self, buffered_image):
         scaled_image = scale_to_fill(buffered_image)
@@ -103,6 +120,46 @@ class SimpleImageFeatureExtractor(object):
             feature_string = (feature_string +
                               self.feature_pattern_to_id[segment_feature_string])
         return feature_string
+
+    def extract_upper_contour(self, buffered_image):
+        segments = divide_into_segments(self.upper_contour_divisions, buffered_image)
+
+        # Get component sizes for the segments
+        features_upper_contour_for_segments = [extract_upper_contour(s)
+                                 for s in segments]
+
+        def get_5_feature_upper_contour(fearture):
+            if(len(fearture) < 5):
+                fearture.append(0)
+                get_5_feature_upper_contour(fearture)
+            else:
+                indexs = range(0, len(fearture), int(math.ceil(float(len(fearture))/5)))
+                newFeature = [fearture[index] for index in indexs]
+                return newFeature
+        for fea in features_upper_contour_for_segments:
+            get_5_feature_upper_contour(fea)
+        features_upper_contour_for_segments_5getted = [get_5_feature_upper_contour(fea) for fea in features_upper_contour_for_segments]
+        def classify_feature(segment, segment_height):
+            if segment >= (segment_height * self.upper_contour_threshold):
+                return "L"
+            else:
+                return "S"
+
+        feature_string = ""
+        for i in range(self.upper_contour_divisions):
+            segment_feature_contour = features_upper_contour_for_segments_5getted[i]
+            segment = segments[i]
+            segment_width, segment_height = segment.shape[:2]
+            segment_feature_string = ""
+            for segment in segment_feature_contour:
+                segment_feature_string = (segment_feature_string +
+                                          classify_feature(segment, segment_height))
+            feature_string = (feature_string +
+                              self.feature_upper_contour_pattern_to_id[segment_feature_string])
+        return feature_string
+
+
+        return features_upper_contour_for_segments_5getted
 
     def extract_feature_strings_for_dir(self,
                                         dir_path,
@@ -181,6 +238,16 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         print("test_extract_feature_string")
         print(feature_string)
 
+    def test_extract_upper_contour(self):
+        image = self.get_example_image()
+        extractor = SimpleImageFeatureExtractor(upper_contour_divisions=5, upper_contour_threshold=0.5)
+
+        feature_string = extractor.extract_upper_contour(image)
+
+        print("test_extract_upper_contour")
+        print feature_string
+
+
     def test_extract_feature_strings_for_dir(self):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                 size_classification_factor=1.3)
@@ -209,8 +276,3 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']
     unittest.main()
-
-
-
-
-

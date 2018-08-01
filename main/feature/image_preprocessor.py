@@ -114,6 +114,17 @@ def extract_sorted_component_size_list(image_buffer):
     return component_lengths
 
 
+def extract_upper_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    result = []
+
+    for i in range(width):
+        for j in range(height):
+            if(image_buffer[j][i] != 255):
+                result.append(j)
+
+    return result
+
 class TestImagePreprocessor(unittest.TestCase):
 
     def get_example_image(self):
@@ -121,7 +132,7 @@ class TestImagePreprocessor(unittest.TestCase):
         # list_image = glob.glob1(example_dir, '*.png')
         # image_path_example = os.path.join(example_dir, list_image[0])
         example_dir = os.path.join(os.path.abspath('../..'), 'test_data')
-        image_path_example = os.path.join(example_dir, 'not_scale.png')
+        image_path_example = os.path.join(example_dir, 'i.png')
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 
