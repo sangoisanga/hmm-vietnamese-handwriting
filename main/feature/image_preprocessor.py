@@ -3,6 +3,7 @@ import sys
 import unittest
 
 import cv2
+import numpy
 
 
 def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
@@ -141,7 +142,13 @@ def extract_orientation_upper_contour(image_buffer):
         if max_height_right is not None and max_height_left is not None:
             break
 
-    return (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+    dx = - max_height_right + max_height_left
+    dy = max_height_right_pos + width - max_height_left_pos
+
+    phi = numpy.arcsin(float(dx)/numpy.sqrt(dx**2 + dy**2))
+
+    #print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+    return phi
 
 
 class TestImagePreprocessor(unittest.TestCase):
@@ -169,7 +176,7 @@ class TestImagePreprocessor(unittest.TestCase):
     def test_divide_into_segments(self):
         original_image = self.get_example_image()
         image = scale_to_fill(original_image)
-        segments = divide_into_segments(5, image)
+        segments = divide_into_segments(7, image)
         i = 0
         for s in segments:
             self.write_image_to_disk("segment" + str(i) + ".png", s)
@@ -186,7 +193,7 @@ class TestImagePreprocessor(unittest.TestCase):
     def test_extract_orientation_upper_contour(self):
         original_image = self.get_example_image()
         image = scale_to_fill(original_image)
-        segments = divide_into_segments(5, image)
+        segments = divide_into_segments(7, image)
         for s in segments:
             orientation = extract_orientation_upper_contour(s)
             print orientation
