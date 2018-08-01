@@ -87,14 +87,17 @@ class TestCharacterClassifier(unittest.TestCase):
         test_dir = os.path.join(base_dir, 'test')
         a_dir = os.path.join(base_dir, 'A')
         b_dir = os.path.join(base_dir, 'B')
+        c_dir = os.path.join(base_dir, 'C')
         shutil.copytree(a_dir, os.path.join(test_dir, 'A'))
         shutil.copytree(b_dir, os.path.join(test_dir, 'B'))
+        shutil.copytree(c_dir, os.path.join(test_dir, 'C'))
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                size_classification_factor=1.3)
         # Extract features
         training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
         print("training examples", training_examples)
         print("testing examples", test_examples)
+
         classifier = CharacterClassifier(training_examples,
                                          nr_of_hmms_to_try=1,
                                          fraction_of_examples_for_test=0.3,
@@ -109,6 +112,7 @@ class TestCharacterClassifier(unittest.TestCase):
             pass
         else:
             raise ValueError("Something is wrong with the test result")
+
         classifier.train()
         after = classifier.test(test_examples)
         print("test_with_two_characters", "before", before, "after", after)
