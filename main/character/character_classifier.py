@@ -88,8 +88,10 @@ class TestCharacterClassifier(unittest.TestCase):
         test_dir = os.path.join(base_dir, 'test')
         a_dir = os.path.join(base_dir, 'A')
         b_dir = os.path.join(base_dir, 'B')
+        c_dir = os.path.join(base_dir, 'C')
         shutil.copytree(a_dir, os.path.join(test_dir, 'A'))
         shutil.copytree(b_dir, os.path.join(test_dir, 'B'))
+        shutil.copytree(c_dir, os.path.join(test_dir, 'C'))
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                size_classification_factor=1.3)
         # Extract features
