@@ -116,11 +116,14 @@ class WordClassifier(object):
 
         # max_score = max(scores)
         # return self.words[scores.index(max_score)]
+        # print scores
         sorted_list = deepcopy(scores)
         sorted_list.sort()
         sorted_list.reverse()
         index = list(map(scores.index, sorted_list[0:3]))
-        word_return = (self.words[index[0]], self.words[index[1]], self.words[index[2]])
+        word_return = ((self.words[index[0]], sorted_list[0]),
+                       (self.words[index[1]], sorted_list[1]),
+                       (self.words[index[2]], sorted_list[2]))
         return word_return
 
 

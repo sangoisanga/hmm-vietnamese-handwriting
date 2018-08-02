@@ -12,6 +12,11 @@ class CharacterClassifier(WordClassifier):
     Works as WordClassifier with some extra features for character classification
     '''
 
+    simpleClassifier = "SIMPLE"
+    orientationClassifier = "ORIENTATION"
+    summaryClassifier = "SUMMARY"
+
+
     def __init__(self,
                  characters_with_examples=None,
                  nr_of_hmms_to_try=3,
@@ -19,17 +24,22 @@ class CharacterClassifier(WordClassifier):
                  train_with_examples=True,
                  initialisation_method=SpecializedHMM.InitMethod.count_based,
                  feature_extractor=None,
-                 from_string_string=None):
+                 from_string_string=None,
+                 alphabet=SimpleImageFeatureExtractor.feature_ids,
+                 mode=simpleClassifier):
         '''
         See WordClassifier
         '''
         if from_string_string != None:
             # init from string
             # "\n\n"+ in the next row is for jython bug 1469
-            feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
-            nr_of_divisions, size_classification_factor = feature_extractor_parameters
+
+            #feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
+            feature_extractor_parameters, classifier_string = eval(from_string_string)
+            nr_of_divisions, size_classification_factor, feature_mode = feature_extractor_parameters
             self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
                                                                  size_classification_factor)
+            self.mode = feature_mode
             self.nr_of_segments = nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
@@ -43,19 +53,29 @@ class CharacterClassifier(WordClassifier):
         new_characters_with_examples = []
         for label, examples in characters_with_examples:
             new_characters_with_examples.append((label * self.nr_of_segments, examples))
+
+        # Mode for support multi feature extractor
+        self.mode = mode
+
         super(CharacterClassifier, self).__init__(new_characters_with_examples,
                                                   nr_of_hmms_to_try,
                                                   fraction_of_examples_for_test,
                                                   train_with_examples,
                                                   initialisation_method,
-                                                  alphabet=SimpleImageFeatureExtractor.feature_ids)
+                                                  alphabet=alphabet)
 
     def classify_character_string(self, string):
         classification = super(CharacterClassifier, self).classify(string)
         return (classification[0], classification[1], classification[2])
 
     def classify_image(self, buffered_image):
-        string = self.feature_extractor.extract_feature_string(buffered_image)
+        string = ""
+        if self.mode == self.simpleClassifier:
+            string = self.feature_extractor.extract_feature_string(buffered_image)
+        elif self.mode == self.orientationClassifier:
+            string = self.feature_extractor.extract_orientation_upper_contour_string(buffered_image)
+        elif self.mode == self.summaryClassifier:
+            string = self.feature_extractor.summary_feature(buffered_image)
         return self.classify_character_string(string)
 
     def test(self, test_examples):
@@ -72,7 +92,8 @@ class CharacterClassifier(WordClassifier):
             raise ValueError("feature_extractor must be given if the character classifier shall be stringified")
         else:
             feature_extractor_parameters = (self.feature_extractor.nr_of_divisions,
-                                            self.feature_extractor.size_classification_factor)
+                                            self.feature_extractor.size_classification_factor,
+                                            self.mode)
         word_classifier_string = super(CharacterClassifier, self).to_string()
         return str((feature_extractor_parameters,
                     word_classifier_string))
@@ -97,7 +118,6 @@ class TestCharacterClassifier(unittest.TestCase):
         training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
         print("training examples", training_examples)
         print("testing examples", test_examples)
-
         classifier = CharacterClassifier(training_examples,
                                          nr_of_hmms_to_try=1,
                                          fraction_of_examples_for_test=0.3,
@@ -112,7 +132,6 @@ class TestCharacterClassifier(unittest.TestCase):
             pass
         else:
             raise ValueError("Something is wrong with the test result")
-
         classifier.train()
         after = classifier.test(test_examples)
         print("test_with_two_characters", "before", before, "after", after)

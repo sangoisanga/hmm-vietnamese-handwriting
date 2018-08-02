@@ -3,6 +3,7 @@ import sys
 import unittest
 
 import cv2
+import numpy
 
 
 def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
@@ -114,14 +115,50 @@ def extract_sorted_component_size_list(image_buffer):
     return component_lengths
 
 
+def extract_orientation_upper_contour(image_buffer):
+
+    height, width = image_buffer.shape[:2]
+    max_height_left = None
+    max_height_right = None
+
+    max_height_left_pos = None
+    max_height_right_pos = None
+
+    for i in range(width):
+        if max_height_left is None:
+            for j in range(height):
+                if image_buffer[j][i] != 255:
+                    max_height_left = j
+                    max_height_left_pos = i
+                    break
+        if max_height_right is None:
+            temp_i = -(i + 1)
+            for j in range(height):
+                if image_buffer[j][temp_i] != 255:
+                    max_height_right = j
+                    max_height_right_pos = temp_i
+                    break
+
+        if max_height_right is not None and max_height_left is not None:
+            break
+
+    phi = 0
+    if max_height_right is not None:
+        dx = - max_height_right + max_height_left
+        dy = max_height_right_pos + width - max_height_left_pos
+        phi = numpy.arcsin(float(dx) / numpy.sqrt(dx ** 2 + dy ** 2))
+
+    #print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+    return phi
+
 def extract_upper_contour(image_buffer):
     height, width = image_buffer.shape[:2]
-    result = []
+    result = 0
 
     for i in range(width):
         for j in range(height):
             if(image_buffer[j][i] != 255):
-                result.append(j)
+                result = j
 
     return result
 
@@ -132,7 +169,7 @@ class TestImagePreprocessor(unittest.TestCase):
         # list_image = glob.glob1(example_dir, '*.png')
         # image_path_example = os.path.join(example_dir, list_image[0])
         example_dir = os.path.join(os.path.abspath('../..'), 'test_data')
-        image_path_example = os.path.join(example_dir, 'i.png')
+        image_path_example = os.path.join(example_dir, 'not_scale.png')
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 
@@ -164,6 +201,13 @@ class TestImagePreprocessor(unittest.TestCase):
             component_size_list = extract_sorted_component_size_list(s)
             print(component_size_list)
 
+    def test_extract_orientation_upper_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments(7, image)
+        for s in segments:
+            orientation = extract_orientation_upper_contour(s)
+            print orientation
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']
