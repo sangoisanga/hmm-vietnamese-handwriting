@@ -105,7 +105,7 @@ class HMM(object):
         T = len(O)
         self.calc_forward(O)
         beta = zeros(T, self.N)
-        scaling_factor = self.scaling_fact
+        scaling_factor = self.scaling_factor
         # initialization
         for i in range(self.N):
             beta[T - 1][i] = 1.0
