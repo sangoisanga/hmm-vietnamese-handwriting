@@ -13,9 +13,9 @@ def create_character_classifier(save_to_file_path, factor):
     extractor = SimpleImageFeatureExtractor(nr_of_divisions=11,
                                             size_classification_factor=factor)
 
-    training_examples, test_examples = extractor.extract_training_and_test_examples(example_dir,
-                                                                                    nr_of_training_examples,
-                                                                                    nr_of_test_examples)
+    training_examples, test_examples = extractor.extract_training_and_test_examples_orientation(example_dir,
+                                                                                                nr_of_training_examples,
+                                                                                                nr_of_test_examples)
 
     print training_examples
     print test_examples
@@ -25,7 +25,9 @@ def create_character_classifier(save_to_file_path, factor):
                                      fraction_of_examples_for_test=0,
                                      train_with_examples=False,
                                      initialisation_method=SpecializedHMM.InitMethod.count_based,
-                                     feature_extractor=extractor)
+                                     feature_extractor=extractor,
+                                     alphabet=SimpleImageFeatureExtractor.orientation_upper_contour_ids,
+                                     mode=CharacterClassifier.orientationClassifier)
     test_result = str(classifier.test(test_examples))
     print(test_result)
     classifier_string = classifier.to_string()
@@ -35,4 +37,4 @@ def create_character_classifier(save_to_file_path, factor):
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_4-6", 4.6)
+    create_character_classifier("character_classifier_orientation", 4.6)

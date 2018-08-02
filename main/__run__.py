@@ -6,27 +6,32 @@ import cv2
 
 from main.character.character_classifier import CharacterClassifier
 
-base_dir = os.path.abspath('../')
 
-character_data_path_4_6 = join(base_dir, 'main', 'model_creation', 'character_classifier_11_segments_4_6_cf.dat')
-character_classifier_file_4_6 = open(character_data_path_4_6, 'r')
-character_classifier_4_6 = CharacterClassifier(from_string_string=character_classifier_file_4_6.read())
-character_classifier_file_4_6.close()
+def loadCharaterClassifier(name):
+    base_dir = os.path.abspath('../')
+    character_data_path = join(base_dir, 'main', 'model_creation', name)
+    character_classifier_file = open(character_data_path, 'r')
+    character_classifier = CharacterClassifier(from_string_string=character_classifier_file.read())
+    character_classifier_file.close()
 
-test_dir = join(base_dir, 'test_of_tuan')
+    return character_classifier
 
-list_test = glob.glob1(test_dir, '*.png')
 
-for img in list_test:
+if __name__ == "__main__":
 
-    image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)
+    test_dir = join(os.path.abspath('../'), 'test_of_tuan')
+    list_test = glob.glob1(test_dir, '*.png')
 
-    print  "Picture " + img + "\n"
+    character = loadCharaterClassifier('character_classifier_orientation.dat')
 
-    # print char[0][1] == char[1][1]
+    for img in list_test:
+        image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)
 
-    char = character_classifier_4_6.classify_image(image)
-    print "Factor 4.6" + " is: " \
-          + char[0][0][0] + ': ' + str(char[0][1]) + ", " \
-          + char[1][0][0] + ': ' + str(char[1][1]) + ", " \
-          + char[2][0][0] + ': ' + str(char[0][1]) + "\n"
+        print  "Picture " + img + "\n"
+        # print char[0][1] == char[1][1]
+
+        char = character.classify_image(image)
+        print "Orientation" + " is: " \
+              + char[0][0][0] + ': ' + str(char[0][1]) + ", " \
+              + char[1][0][0] + ': ' + str(char[1][1]) + ", " \
+              + char[2][0][0] + ': ' + str(char[0][1]) + "\n"
