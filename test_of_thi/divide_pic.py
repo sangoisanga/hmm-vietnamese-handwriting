@@ -42,7 +42,7 @@ def save_image(name, list_image):
 
 if __name__ == "__main__":
 
-    pic1 = "Q.jpg"
+    pic1 = "K.jpg"
     name = pic1[0:pic1.index('.')]
     # name = "V"
     img = cv2.imread(pic1)
