@@ -152,6 +152,44 @@ def extract_orientation_upper_contour(image_buffer):
     return phi
 
 
+def extract_orientation_lower_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    min_height_left = None
+    min_height_right = None
+
+    min_height_left_pos = None
+    min_height_right_pos = None
+
+    for i in range(width):
+        if min_height_left is None:
+            for temp_j in range(height):
+                j = -(temp_j + 1)
+                if image_buffer[j][i] != 255:
+                    min_height_left = j
+                    min_height_left_pos = i
+                    break
+        if min_height_right is None:
+            temp_i = -(i + 1)
+            for temp_j in range(height):
+                j = -(temp_j + 1)
+                if image_buffer[j][temp_i] != 255:
+                    min_height_right = j
+                    min_height_right_pos = temp_i
+                    break
+
+        if min_height_right is not None and min_height_left is not None:
+            break
+
+    phi = 0
+    if min_height_right is not None:
+        dx = - min_height_right + min_height_left
+        dy = min_height_right_pos + width - min_height_left_pos
+        phi = numpy.arcsin(float(dx) / numpy.sqrt(dx ** 2 + dy ** 2))
+
+    # print (height - min_height_left, min_height_left_pos), (height - min_height_right, min_height_right_pos + width)
+    return phi
+
+
 def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
     height, width = image_buffer.shape[:2]
     segment_width = int(math.ceil(width / (1 + (nr_of_segments - 1) * (1 - overlap))))
@@ -244,6 +282,13 @@ class TestImagePreprocessor(unittest.TestCase):
             orientation = extract_orientation_upper_contour(s)
             print orientation
 
+    def test_extract_orientation_lower_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        for s in segments:
+            orientation = extract_orientation_lower_contour(s)
+            print orientation
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']

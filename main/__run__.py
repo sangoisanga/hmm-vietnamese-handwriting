@@ -23,7 +23,7 @@ if __name__ == "__main__":
     list_test = glob.glob1(test_dir, '*.png')
 
     #character = loadCharaterClassifier('character_classifier_orientation.dat')
-    character = loadCharaterClassifier('character_classifier_orientation_overlap.dat')
+    character = loadCharaterClassifier('character_classifier_orientation_full.dat')
 
     for img in list_test:
         image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)

@@ -27,7 +27,6 @@ def create_character_classifier(save_to_file_path, factor, overlap):
                                      train_with_examples=False,
                                      initialisation_method=SpecializedHMM.InitMethod.count_based,
                                      feature_extractor=extractor,
-                                     alphabet=SimpleImageFeatureExtractor.orientation_upper_contour_ids,
                                      mode=CharacterClassifier.orientationClassifier)
     test_result = str(classifier.test(test_examples))
     print(test_result)
@@ -38,4 +37,4 @@ def create_character_classifier(save_to_file_path, factor, overlap):
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_orientation_overlap", 4.6, 0.5)
+    create_character_classifier("character_classifier_orientation_full", 4.6, 0.5)

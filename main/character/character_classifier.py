@@ -12,7 +12,7 @@ class CharacterClassifier(WordClassifier):
     Works as WordClassifier with some extra features for character classification
     '''
 
-    simpleClassifier = "SIMPLE"
+    componentClassifier = "COMPONENT"
     orientationClassifier = "ORIENTATION"
 
     def __init__(self,
@@ -23,8 +23,7 @@ class CharacterClassifier(WordClassifier):
                  initialisation_method=SpecializedHMM.InitMethod.count_based,
                  feature_extractor=None,
                  from_string_string=None,
-                 alphabet=SimpleImageFeatureExtractor.feature_ids,
-                 mode=simpleClassifier):
+                 mode=componentClassifier):
         '''
         See WordClassifier
         '''
@@ -42,6 +41,7 @@ class CharacterClassifier(WordClassifier):
             self.nr_of_segments = nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
+
         # Feature extractor is voluntary but is necessary if the classify_image
         # method shall be used
         self.feature_extractor = feature_extractor
@@ -56,6 +56,13 @@ class CharacterClassifier(WordClassifier):
         # Mode for support multi feature extractor
         self.mode = mode
 
+        if self.mode == self.componentClassifier:
+            alphabet = SimpleImageFeatureExtractor.component_ids
+        elif self.mode == self.orientationClassifier:
+            alphabet = SimpleImageFeatureExtractor.orientation_ids
+        else:
+            raise ValueError('Alphabet not defined, Character classifier')
+
         super(CharacterClassifier, self).__init__(new_characters_with_examples,
                                                   nr_of_hmms_to_try,
                                                   fraction_of_examples_for_test,
@@ -69,10 +76,10 @@ class CharacterClassifier(WordClassifier):
 
     def classify_image(self, buffered_image):
         string = ""
-        if self.mode == self.simpleClassifier:
-            string = self.feature_extractor.extract_feature_string(buffered_image)
+        if self.mode == self.componentClassifier:
+            string = self.feature_extractor.extract_component_string(buffered_image)
         elif self.mode == self.orientationClassifier:
-            string = self.feature_extractor.extract_orientation_upper_contour_string(buffered_image)
+            string = self.feature_extractor.extract_orientation_string(buffered_image)
         return self.classify_character_string(string)
 
     def test(self, test_examples):
