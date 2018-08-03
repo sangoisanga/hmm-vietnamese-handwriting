@@ -1,3 +1,4 @@
+import math
 import os
 import sys
 import unittest
@@ -116,7 +117,6 @@ def extract_sorted_component_size_list(image_buffer):
 
 
 def extract_orientation_upper_contour(image_buffer):
-
     height, width = image_buffer.shape[:2]
     max_height_left = None
     max_height_right = None
@@ -148,8 +148,44 @@ def extract_orientation_upper_contour(image_buffer):
         dy = max_height_right_pos + width - max_height_left_pos
         phi = numpy.arcsin(float(dx) / numpy.sqrt(dx ** 2 + dy ** 2))
 
-    #print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+    # print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
     return phi
+
+
+def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
+    height, width = image_buffer.shape[:2]
+    segment_width = int(math.ceil(width / (1 + (nr_of_segments - 1) * (1 - overlap))))
+
+    def create_segment(start_pos):
+        end = start_pos + segment_width
+        if end > width:
+            this_segment_with = segment_width - (end - width)
+        #elif (width - end - segment_width) < 0:
+        #    this_segment_with = width - start_pos
+        else:
+            this_segment_with = segment_width
+        #print "This segment width: " + str(this_segment_with)
+        seg = image_buffer[0:height, start_pos:start_pos + this_segment_with]
+        return seg
+
+    def create_segment_starts(nr_of_segment, seg_width, o):
+        seg_start = [0]
+
+        next_start_width = int(math.ceil(seg_width * (1 - o)))
+
+        for i in range(1, nr_of_segment):
+            seg_start.append(seg_start[i - 1] + next_start_width)
+        return seg_start
+
+    segment_starts = create_segment_starts(nr_of_segments, segment_width, overlap)
+
+    #print segment_width
+    #print segment_starts
+
+    if len(segment_starts) > nr_of_segments:
+        del segment_starts[len(segment_starts) - 1]
+    segments = [create_segment(s) for s in segment_starts]
+    return segments
 
 
 class TestImagePreprocessor(unittest.TestCase):
@@ -183,10 +219,19 @@ class TestImagePreprocessor(unittest.TestCase):
             self.write_image_to_disk("segment" + str(i) + ".png", s)
             i = i + 1
 
+    def test_divide_into_segments_new(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        i = 0
+        for s in segments:
+            self.write_image_to_disk("segment" + str(i) + ".png", s)
+            i = i + 1
+
     def test_extract_sorted_component_size_list(self):
         original_image = self.get_example_image()
         image = scale_to_fill(original_image)
-        segments = divide_into_segments(5, image)
+        segments = divide_into_segments_new(5, image, 0.5)
         for s in segments:
             component_size_list = extract_sorted_component_size_list(s)
             print(component_size_list)
@@ -194,10 +239,11 @@ class TestImagePreprocessor(unittest.TestCase):
     def test_extract_orientation_upper_contour(self):
         original_image = self.get_example_image()
         image = scale_to_fill(original_image)
-        segments = divide_into_segments(7, image)
+        segments = divide_into_segments_new(7, image, 0.5)
         for s in segments:
             orientation = extract_orientation_upper_contour(s)
             print orientation
+
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']

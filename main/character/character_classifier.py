@@ -34,9 +34,10 @@ class CharacterClassifier(WordClassifier):
 
             #feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
             feature_extractor_parameters, classifier_string = eval(from_string_string)
-            nr_of_divisions, size_classification_factor, feature_mode = feature_extractor_parameters
+            nr_of_divisions, size_classification_factor, feature_mode, overlap = feature_extractor_parameters
             self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
-                                                                 size_classification_factor)
+                                                                 size_classification_factor,
+                                                                 overlap)
             self.mode = feature_mode
             self.nr_of_segments = nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
@@ -89,7 +90,8 @@ class CharacterClassifier(WordClassifier):
         else:
             feature_extractor_parameters = (self.feature_extractor.nr_of_divisions,
                                             self.feature_extractor.size_classification_factor,
-                                            self.mode)
+                                            self.mode,
+                                            self.feature_extractor.overlap)
         word_classifier_string = super(CharacterClassifier, self).to_string()
         return str((feature_extractor_parameters,
                     word_classifier_string))
@@ -97,7 +99,7 @@ class CharacterClassifier(WordClassifier):
 
 class TestCharacterClassifier(unittest.TestCase):
 
-    def test_with_two_characters(self):
+    def test_with_three_characters(self):
         # test with just two letters so A and B are copied to a
         # special dir that is deleted after the test
         base_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
@@ -109,7 +111,8 @@ class TestCharacterClassifier(unittest.TestCase):
         shutil.copytree(b_dir, os.path.join(test_dir, 'B'))
         shutil.copytree(c_dir, os.path.join(test_dir, 'C'))
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
-                                               size_classification_factor=1.3)
+                                                size_classification_factor=1.3,
+                                                overlap=0.5)
         # Extract features
         training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
         print("training examples", training_examples)
@@ -130,7 +133,7 @@ class TestCharacterClassifier(unittest.TestCase):
             raise ValueError("Something is wrong with the test result")
         classifier.train()
         after = classifier.test(test_examples)
-        print("test_with_two_characters", "before", before, "after", after)
+        print("test_with_three_characters", "before", before, "after", after)
         shutil.rmtree(test_dir)
 
 

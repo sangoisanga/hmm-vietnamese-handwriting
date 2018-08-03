@@ -5,13 +5,14 @@ from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtract
 from main.feature.specialized_hmm import SpecializedHMM
 
 
-def create_character_classifier(save_to_file_path, factor):
+def create_character_classifier(save_to_file_path, factor, overlap):
     example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
     nr_of_training_examples = 90
     nr_of_test_examples = 10
 
     extractor = SimpleImageFeatureExtractor(nr_of_divisions=11,
-                                            size_classification_factor=factor)
+                                            size_classification_factor=factor,
+                                            overlap=overlap)
 
     training_examples, test_examples = extractor.extract_training_and_test_examples_orientation(example_dir,
                                                                                                 nr_of_training_examples,
@@ -37,4 +38,4 @@ def create_character_classifier(save_to_file_path, factor):
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_orientation", 4.6)
+    create_character_classifier("character_classifier_orientation_overlap", 4.6, 0.5)
