@@ -51,12 +51,7 @@ class CharacterClassifier(WordClassifier):
 
         # Create alphabet for create HMM
 
-        if self.feature_extractor.extract_mode == SimpleImageFeatureExtractor.component_extract:
-            alphabet = SimpleImageFeatureExtractor.component_ids
-        elif self.feature_extractor.extract_mode == self.feature_extractor.extract_mode == SimpleImageFeatureExtractor.orientation_extract:
-            alphabet = SimpleImageFeatureExtractor.orientation_ids
-        else:
-            raise ValueError('Alphabet not defined, Character classifier')
+        alphabet = self.feature_extractor.get_observer_ids()
 
         super(CharacterClassifier, self).__init__(new_characters_with_examples,
                                                   nr_of_hmms_to_try,

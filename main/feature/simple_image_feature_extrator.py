@@ -63,6 +63,14 @@ class SimpleImageFeatureExtractor(object):
         self.size_classification_factor = size_classification_factor
         self.contour_upper_factor = contour_upper_factor
 
+    def get_observer_ids(self):
+        if self.extract_mode == self.orientation_extract:
+            return self.orientation_ids
+        elif self.extract_mode == self.component_extract:
+            return self.component_ids
+        else:
+            raise ValueError("Can not detect extract mode")
+
     def extract_component_string(self, buffered_image):
         """
 
