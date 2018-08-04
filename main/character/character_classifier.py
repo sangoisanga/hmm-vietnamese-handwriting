@@ -12,9 +12,6 @@ class CharacterClassifier(WordClassifier):
     Works as WordClassifier with some extra features for character classification
     '''
 
-    componentClassifier = "COMPONENT"
-    orientationClassifier = "ORIENTATION"
-
     def __init__(self,
                  characters_with_examples=None,
                  nr_of_hmms_to_try=3,
@@ -22,22 +19,21 @@ class CharacterClassifier(WordClassifier):
                  train_with_examples=True,
                  initialisation_method=SpecializedHMM.InitMethod.count_based,
                  feature_extractor=None,
-                 from_string_string=None,
-                 mode=componentClassifier):
+                 from_string_string=None):
         '''
         See WordClassifier
         '''
-        if from_string_string != None:
+        if from_string_string is not None:
             # init from string
             # "\n\n"+ in the next row is for jython bug 1469
 
-            #feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
+            # feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
             feature_extractor_parameters, classifier_string = eval(from_string_string)
-            nr_of_divisions, size_classification_factor, feature_mode, overlap = feature_extractor_parameters
-            self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
-                                                                 size_classification_factor,
-                                                                 overlap)
-            self.mode = feature_mode
+
+            nr_of_divisions, overlap, extract_mode, size_classification_factor, contour_upper_factor = feature_extractor_parameters
+
+            self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions, overlap, extract_mode,
+                                                                 size_classification_factor, contour_upper_factor)
             self.nr_of_segments = nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
@@ -53,12 +49,11 @@ class CharacterClassifier(WordClassifier):
         for label, examples in characters_with_examples:
             new_characters_with_examples.append((label * self.nr_of_segments, examples))
 
-        # Mode for support multi feature extractor
-        self.mode = mode
+        # Create alphabet for create HMM
 
-        if self.mode == self.componentClassifier:
+        if self.feature_extractor.extract_mode == SimpleImageFeatureExtractor.component_extract:
             alphabet = SimpleImageFeatureExtractor.component_ids
-        elif self.mode == self.orientationClassifier:
+        elif self.feature_extractor.extract_mode == self.feature_extractor.extract_mode == SimpleImageFeatureExtractor.orientation_extract:
             alphabet = SimpleImageFeatureExtractor.orientation_ids
         else:
             raise ValueError('Alphabet not defined, Character classifier')
@@ -75,11 +70,7 @@ class CharacterClassifier(WordClassifier):
         return (classification[0], classification[1], classification[2])
 
     def classify_image(self, buffered_image):
-        string = ""
-        if self.mode == self.componentClassifier:
-            string = self.feature_extractor.extract_component_string(buffered_image)
-        elif self.mode == self.orientationClassifier:
-            string = self.feature_extractor.extract_orientation_string(buffered_image)
+        string = self.feature_extractor.extract_feature_string(buffered_image)
         return self.classify_character_string(string)
 
     def test(self, test_examples):
@@ -96,9 +87,11 @@ class CharacterClassifier(WordClassifier):
             raise ValueError("feature_extractor must be given if the character classifier shall be stringified")
         else:
             feature_extractor_parameters = (self.feature_extractor.nr_of_divisions,
+                                            self.feature_extractor.overlap,
+                                            self.feature_extractor.extract_mode,
                                             self.feature_extractor.size_classification_factor,
-                                            self.mode,
-                                            self.feature_extractor.overlap)
+                                            self.feature_extractor.contour_upper_factor
+                                            )
         word_classifier_string = super(CharacterClassifier, self).to_string()
         return str((feature_extractor_parameters,
                     word_classifier_string))

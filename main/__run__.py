@@ -22,14 +22,12 @@ if __name__ == "__main__":
     test_dir = join(os.path.abspath('../'), 'test_of_tuan')
     list_test = glob.glob1(test_dir, '*.png')
 
-    #character = loadCharaterClassifier('character_classifier_orientation.dat')
-    character = loadCharaterClassifier('character_classifier_orientation_full.dat')
+    character = loadCharaterClassifier('character_classifier_orientation_new.dat')
 
     for img in list_test:
         image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)
 
         print  "Picture " + img + "\n"
-        # print char[0][1] == char[1][1]
 
         char = character.classify_image(image)
         '''

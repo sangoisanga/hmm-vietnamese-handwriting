@@ -198,11 +198,11 @@ def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
         end = start_pos + segment_width
         if end > width:
             this_segment_with = segment_width - (end - width)
-        #elif (width - end - segment_width) < 0:
+        # elif (width - end - segment_width) < 0:
         #    this_segment_with = width - start_pos
         else:
             this_segment_with = segment_width
-        #print "This segment width: " + str(this_segment_with)
+        # print "This segment width: " + str(this_segment_with)
         seg = image_buffer[0:height, start_pos:start_pos + this_segment_with]
         return seg
 
@@ -217,13 +217,26 @@ def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
 
     segment_starts = create_segment_starts(nr_of_segments, segment_width, overlap)
 
-    #print segment_width
-    #print segment_starts
+    # print segment_width
+    # print segment_starts
 
     if len(segment_starts) > nr_of_segments:
         del segment_starts[len(segment_starts) - 1]
     segments = [create_segment(s) for s in segment_starts]
     return segments
+
+
+def extract_upper_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    result = 0
+
+    for i in range(width):
+        for j in range(height):
+            if (image_buffer[j][i] != 255):
+                result = j
+                break
+
+    return result
 
 
 class TestImagePreprocessor(unittest.TestCase):
@@ -289,6 +302,7 @@ class TestImagePreprocessor(unittest.TestCase):
         for s in segments:
             orientation = extract_orientation_lower_contour(s)
             print orientation
+
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']
