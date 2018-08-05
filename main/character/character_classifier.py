@@ -69,9 +69,9 @@ class CharacterClassifier(WordClassifier):
         return self.classify_character_string(string)
 
     def test(self, test_examples):
-        '''
+        """
         See WordClassifier.test()
-        '''
+        """
         new_test_examples = []
         for label, examples in test_examples:
             new_test_examples.append((label * self.nr_of_segments, examples))

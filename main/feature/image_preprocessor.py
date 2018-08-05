@@ -228,12 +228,12 @@ def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
 
 def extract_upper_contour(image_buffer):
     height, width = image_buffer.shape[:2]
-    result = 0
+    result = []
 
     for i in range(width):
         for j in range(height):
             if (image_buffer[j][i] != 255):
-                result = j
+                result.append(j)
                 break
 
     return result
@@ -301,6 +301,14 @@ class TestImagePreprocessor(unittest.TestCase):
         segments = divide_into_segments_new(5, image, 0.5)
         for s in segments:
             orientation = extract_orientation_lower_contour(s)
+            print orientation
+
+    def test_extract_upper_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        for s in segments:
+            orientation = extract_upper_contour(s)
             print orientation
 
 
