@@ -13,7 +13,7 @@ def create_character_classifier(save_to_file_path, factor):
     extractor = SimpleImageFeatureExtractor(nr_of_divisions=11,
                                             size_classification_factor=factor)
 
-    training_examples, test_examples = extractor.extract_training_and_test_examples_orientation(example_dir,
+    training_examples, test_examples = extractor.extract_training_and_test_examples_summary(example_dir,
                                                                                                 nr_of_training_examples,
                                                                                                 nr_of_test_examples)
 
@@ -26,10 +26,10 @@ def create_character_classifier(save_to_file_path, factor):
                                      train_with_examples=False,
                                      initialisation_method=SpecializedHMM.InitMethod.count_based,
                                      feature_extractor=extractor,
-                                     alphabet=SimpleImageFeatureExtractor.orientation_upper_contour_ids,
-                                     mode=CharacterClassifier.orientationClassifier)
-    test_result = str(classifier.test(test_examples))
-    print(test_result)
+                                     alphabet=SimpleImageFeatureExtractor.feature_ids,
+                                     mode=CharacterClassifier.summaryClassifier)
+    #test_result = str(classifier.test(test_examples))
+    #print(test_result)
     classifier_string = classifier.to_string()
     file = open(save_to_file_path + ".dat", 'w')
     file.write(classifier_string)

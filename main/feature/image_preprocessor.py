@@ -151,6 +151,16 @@ def extract_orientation_upper_contour(image_buffer):
     #print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
     return phi
 
+def extract_upper_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    result = 0
+
+    for i in range(width):
+        for j in range(height):
+            if(image_buffer[j][i] != 255):
+                result = j
+
+    return result
 
 class TestImagePreprocessor(unittest.TestCase):
 

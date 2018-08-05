@@ -14,6 +14,8 @@ class CharacterClassifier(WordClassifier):
 
     simpleClassifier = "SIMPLE"
     orientationClassifier = "ORIENTATION"
+    summaryClassifier = "SUMMARY"
+
 
     def __init__(self,
                  characters_with_examples=None,
@@ -72,6 +74,8 @@ class CharacterClassifier(WordClassifier):
             string = self.feature_extractor.extract_feature_string(buffered_image)
         elif self.mode == self.orientationClassifier:
             string = self.feature_extractor.extract_orientation_upper_contour_string(buffered_image)
+        elif self.mode == self.summaryClassifier:
+            string = self.feature_extractor.summary_feature(buffered_image)
         return self.classify_character_string(string)
 
     def test(self, test_examples):

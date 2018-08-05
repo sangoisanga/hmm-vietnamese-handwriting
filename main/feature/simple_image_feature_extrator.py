@@ -7,7 +7,7 @@ import cv2
 
 from main.feature.image_example_dir import ImageExampleDir
 from main.feature.image_preprocessor import scale_to_fill, divide_into_segments, extract_sorted_component_size_list, \
-    extract_orientation_upper_contour
+    extract_orientation_upper_contour, extract_upper_contour
 
 
 class SimpleImageFeatureExtractor(object):
@@ -15,7 +15,7 @@ class SimpleImageFeatureExtractor(object):
     A class used to extract a sequence of features from an image that
     may be used as training observations for a HMM.
     '''
-    feature_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    """feature_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
     feature_pattern_to_id = {"LLL": "a",
                              "LLS": "b",
                              "LSS": "c",
@@ -25,7 +25,15 @@ class SimpleImageFeatureExtractor(object):
                              "SSS": "g",
                              "SSN": "h",
                              "SNN": "i",
-                             "NNN": "j"}
+                             "NNN": "j"}"""
+
+
+    feature_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+
+    feature_pattern_to_id = {
+        'LL':'a', 'LS':'b', 'LN':'c', 'SL':'d', 'SS':'e', 'SN':'f', 'NL':'g', 'NS':'h', 'NN':'i'
+    }
+
 
     orientation_upper_contour_ids = ['L', 'S', 'N']
     '''
@@ -37,7 +45,8 @@ class SimpleImageFeatureExtractor(object):
 
     def __init__(self,
                  nr_of_divisions=7,
-                 size_classification_factor=1.3):
+                 size_classification_factor=1.3,
+                 upper_contour_threshold = 0.5):
         '''
         Parameters:
         * nr_of_divisions - Number of times to divide the image vertically
@@ -70,6 +79,7 @@ class SimpleImageFeatureExtractor(object):
         '''
         self.nr_of_divisions = nr_of_divisions
         self.size_classification_factor = size_classification_factor
+        self.upper_contour_threshold = upper_contour_threshold
 
     def extract_feature_string(self, buffered_image):
         scaled_image = scale_to_fill(buffered_image)
@@ -111,6 +121,7 @@ class SimpleImageFeatureExtractor(object):
                                           classify_component(size, segment_width))
             feature_string = (feature_string +
                               self.feature_pattern_to_id[segment_feature_string])
+        print feature_string
         return feature_string
 
     def extract_feature_strings_for_dir(self,
@@ -259,6 +270,167 @@ class SimpleImageFeatureExtractor(object):
             label_test_example_tuples.append((label, test_examples))
         return (label_training_example_tuples, label_test_example_tuples)
 
+    #
+    #
+    '''This part is upper contour extract'''
+
+    #
+    #
+
+    def extract_upper_contour_string(self, buffered_image):
+        scaled_image = scale_to_fill(buffered_image)
+        image_height = buffered_image.shape[1]
+        segments = divide_into_segments(self.nr_of_divisions, scaled_image)
+        # Get component sizes for the segments
+
+        feature = [extract_upper_contour(s) for s in segments]
+
+        def classify_component(upper_contour):
+            if upper_contour > (image_height * 0.5):
+                return "L"
+            elif upper_contour < (image_height * 0.5):
+                return "S"
+            else:
+                return "N"
+
+        feature_string = ""
+
+        for i in range(self.nr_of_divisions):
+            feature_string = feature_string + classify_component(feature[i])
+        return feature_string
+
+    def extract_upper_contour_strings_for_dir(self,
+                                                          dir_path,
+                                                          nr_of_training_examples=10000,
+                                                          nr_of_test_examples=0):
+        image_dir = ImageExampleDir(dir_path)
+        images = [image for (label, image) in image_dir]
+        nr_of_training_examples = min([nr_of_training_examples, len(images)])
+        nr_of_images = len(images)
+
+        test_example_indices = []
+        for i in range(nr_of_test_examples):
+            random_value_selected = False
+            random_number = 0
+            while not random_value_selected:
+                random_number = int(round(random() * (nr_of_images - 1)))
+                if not random_number in test_example_indices:
+                    random_value_selected = True
+            test_example_indices.append(random_number)
+
+        test_example_indices.sort()
+        test_example_indices.reverse()
+
+        feature_strings = [self.extract_upper_contour_string(image) for image in images]
+        # take out the test examples
+        test_examples = []
+        for i in test_example_indices:
+            test_examples.append(feature_strings.pop(i))
+        if len(feature_strings) > nr_of_training_examples:
+            feature_strings = feature_strings[0:nr_of_training_examples]
+
+        return (feature_strings, test_examples)
+
+    def extract_label_examples_tuples_for_library_upper_contour(self, library_path):
+        example_dirs = os.listdir(library_path)
+        label_example_tuples = []
+        for dir_name in example_dirs:
+            label = dir_name
+            dir = os.path.join(library_path, dir_name)
+            examples, test_examples = self.extract_upper_contour_strings_for_dir(dir)
+            label_example_tuples.append((label, examples))
+        return label_example_tuples
+
+    def extract_training_and_test_examples_upper_contour(self,
+                                                       library_path,
+                                                       nr_of_training_examples=5000,
+                                                       nr_of_test_examples=10):
+        example_dirs = os.listdir(library_path)
+        label_training_example_tuples = []
+        label_test_example_tuples = []
+        for dir_name in example_dirs:
+            label = dir_name
+            dir = os.path.join(library_path, dir_name)
+            training_examples, test_examples = self.extract_upper_contour_strings_for_dir(dir,
+                                                                                                      nr_of_training_examples,
+                                                                                                      nr_of_test_examples)
+            label_training_example_tuples.append((label, training_examples))
+            label_test_example_tuples.append((label, test_examples))
+        return (label_training_example_tuples, label_test_example_tuples)
+
+    #
+    #
+    '''This part is summary feature'''
+
+    #
+    #
+    def summary_feature(self, buffered_image):
+        orientation_feature_string = self.extract_orientation_upper_contour_string(buffered_image)
+        upper_contour_string = self.extract_upper_contour_string(buffered_image)
+        feature_string = ''
+
+        for i in range(self.nr_of_divisions):
+            segment_feature_string = orientation_feature_string[i] + upper_contour_string[i]
+            feature_string = feature_string + self.feature_pattern_to_id[segment_feature_string]
+        return feature_string
+    def extract_summary_strings_for_dir(self,
+                                              dir_path,
+                                              nr_of_training_examples=10000,
+                                              nr_of_test_examples=0):
+        image_dir = ImageExampleDir(dir_path)
+        images = [image for (label, image) in image_dir]
+        nr_of_training_examples = min([nr_of_training_examples, len(images)])
+        nr_of_images = len(images)
+
+        test_example_indices = []
+        for i in range(nr_of_test_examples):
+            random_value_selected = False
+            random_number = 0
+            while not random_value_selected:
+                random_number = int(round(random() * (nr_of_images - 1)))
+                if not random_number in test_example_indices:
+                    random_value_selected = True
+            test_example_indices.append(random_number)
+
+        test_example_indices.sort()
+        test_example_indices.reverse()
+
+        feature_strings = [self.summary_feature(image) for image in images]
+        # take out the test examples
+        test_examples = []
+        for i in test_example_indices:
+            test_examples.append(feature_strings.pop(i))
+        if len(feature_strings) > nr_of_training_examples:
+            feature_strings = feature_strings[0:nr_of_training_examples]
+
+        return (feature_strings, test_examples)
+
+    def extract_label_examples_tuples_for_library_summary(self, library_path):
+        example_dirs = os.listdir(library_path)
+        label_example_tuples = []
+        for dir_name in example_dirs:
+            label = dir_name
+            dir = os.path.join(library_path, dir_name)
+            examples, test_examples = self.extract_summary_strings_for_dir(dir)
+            label_example_tuples.append((label, examples))
+        return label_example_tuples
+
+    def extract_training_and_test_examples_summary(self,
+                                                         library_path,
+                                                         nr_of_training_examples=5000,
+                                                         nr_of_test_examples=10):
+        example_dirs = os.listdir(library_path)
+        label_training_example_tuples = []
+        label_test_example_tuples = []
+        for dir_name in example_dirs:
+            label = dir_name
+            dir = os.path.join(library_path, dir_name)
+            training_examples, test_examples = self.extract_summary_strings_for_dir(dir,
+                                                                                          nr_of_training_examples,
+                                                                                          nr_of_test_examples)
+            label_training_example_tuples.append((label, training_examples))
+            label_test_example_tuples.append((label, test_examples))
+        return (label_training_example_tuples, label_test_example_tuples)
 
 class TestSimpleImageFeatureExtractor(unittest.TestCase):
 
@@ -269,7 +441,7 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 
-    def test_extract_feature_string(self):
+    """def test_extract_feature_string(self):
         image = self.get_example_image()
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=5,
                                                 size_classification_factor=4.3)
@@ -299,15 +471,23 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         training_examples = extractor.extract_label_examples_tuples_for_library(library_path)
         print("test_extract_label_examples_tuples_for_library")
         print(training_examples)
+    """
 
     def test_extract_orientation_upper_contour_string(self):
         image = self.get_example_image()
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=5)
         feature_string = extractor.extract_orientation_upper_contour_string(image)
-        print("test_extract_feature_string")
+        print("test_extract_orientation_upper_contour_string")
         print(feature_string)
 
-    def test_extract_orientation_upper_contour_strings_for_dir(self):
+    def test_summary_feature(self):
+        image = self.get_example_image()
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5)
+        feature_string = extractor.summary_feature(image)
+        print("test_summary_feature")
+        print(feature_string)
+
+    """def test_extract_orientation_upper_contour_strings_for_dir(self):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7)
         example_dir_path = os.path.join(os.path.abspath('../..'), 'character_examples', 'I')
         training_examples, test_examples = extractor.extract_orientation_upper_contour_strings_for_dir(
@@ -328,7 +508,7 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         training_examples = extractor.extract_label_examples_tuples_for_library_orientation(library_path)
         print("test_extract_label_examples_tuples_for_library_orientation")
         print(training_examples)
-
+    """
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.test_word_']
