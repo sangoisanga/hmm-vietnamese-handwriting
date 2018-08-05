@@ -30,11 +30,8 @@ class CharacterClassifier(WordClassifier):
             # feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
             feature_extractor_parameters, classifier_string = eval(from_string_string)
 
-            nr_of_divisions, overlap, extract_mode, size_classification_factor, contour_upper_factor = feature_extractor_parameters
-
-            self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions, overlap, extract_mode,
-                                                                 size_classification_factor, contour_upper_factor)
-            self.nr_of_segments = nr_of_divisions
+            self.feature_extractor = SimpleImageFeatureExtractor(from_string=feature_extractor_parameters)
+            self.nr_of_segments = self.feature_extractor.nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
 
@@ -81,12 +78,8 @@ class CharacterClassifier(WordClassifier):
         if self.feature_extractor == None:
             raise ValueError("feature_extractor must be given if the character classifier shall be stringified")
         else:
-            feature_extractor_parameters = (self.feature_extractor.nr_of_divisions,
-                                            self.feature_extractor.overlap,
-                                            self.feature_extractor.extract_mode,
-                                            self.feature_extractor.size_classification_factor,
-                                            self.feature_extractor.contour_upper_factor
-                                            )
+            feature_extractor_parameters = self.feature_extractor.get_feature_extractor_parameters()
+
         word_classifier_string = super(CharacterClassifier, self).to_string()
         return str((feature_extractor_parameters,
                     word_classifier_string))

@@ -46,7 +46,8 @@ class SimpleImageFeatureExtractor(object):
                  overlap=None,
                  extract_mode=component_extract,
                  size_classification_factor=1.3,
-                 contour_upper_factor=0.5):
+                 contour_upper_factor=0.5,
+                 from_string=None):
         """
         :param contour_upper_factor:
         :param nr_of_divisions: Number of times to divide the image vertically
@@ -57,6 +58,15 @@ class SimpleImageFeatureExtractor(object):
         :param overlap: previous segment = overlap * current segment in image segmentation
 
         """
+        if from_string is not None:
+            nr_of_divisions1, overlap1, extract_mode1, size_classification_factor1, contour_upper_factor1 = from_string
+            self.nr_of_divisions = nr_of_divisions1
+            self.overlap = overlap1
+            self.extract_mode = extract_mode1
+            self.size_classification_factor = size_classification_factor1
+            self.contour_upper_factor = contour_upper_factor1
+            return
+
         self.nr_of_divisions = nr_of_divisions
         self.overlap = overlap
         self.extract_mode = extract_mode
@@ -311,6 +321,16 @@ class SimpleImageFeatureExtractor(object):
             label_training_example_tuples.append((label, training_examples))
             label_test_example_tuples.append((label, test_examples))
         return (label_training_example_tuples, label_test_example_tuples)
+
+    def get_feature_extractor_parameters(self):
+        feature_extractor_parameters = (self.nr_of_divisions,
+                                        self.overlap,
+                                        self.extract_mode,
+                                        self.size_classification_factor,
+                                        self.contour_upper_factor
+                                        )
+
+        return feature_extractor_parameters
 
 
 class TestSimpleImageFeatureExtractor(unittest.TestCase):
