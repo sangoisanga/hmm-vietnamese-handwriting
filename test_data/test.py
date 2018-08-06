@@ -1,41 +1,45 @@
+import time
+
 import cv2
+import numpy as np
 
-from main.feature.image_preprocessor import scale_to_fill
+img = cv2.imread('segment0.png', cv2.IMREAD_GRAYSCALE)
 
-img_not_scale = cv2.imread('i.png', cv2.IMREAD_GRAYSCALE)
-'''
-height, width = img_not_scale.shape[:2]
+print img.shape
 
-# Get extreem values from the image
-max_x = 0
-min_x = width
-max_y = 0
-min_y = height
+height, width = img.shape[:2]
+max_height_left = None
+max_height_right = None
 
-for x in range(0, width):
-    for y in range(0, height):
+max_height_left_pos = None
+max_height_right_pos = None
 
-        if img_not_scale[x][y] != 255:
-            if x > max_x:
-                max_x = x
-            if x < min_x:
-                min_x = x
-            if y > max_y:
-                max_y = y
-            if y < min_y:
-                min_y = y
-# Cut out the part of image containing colored pixels
-sub_image = img_not_scale[min_x:max_x, min_y:max_y]
+for i in range(width):
+    if max_height_left is None:
+        for j in range(height):
+            if img[j][i] != 255:
+                max_height_left = j
+                max_height_left_pos = i
+                break
+    if max_height_right is None:
+        temp_i = -(i + 1)
+        for j in range(height):
+            if img[j][temp_i] != 255:
+                max_height_right = j
+                max_height_right_pos = temp_i
+                break
 
-# Scale the image
-resize_image = cv2.resize(sub_image, (width, height), interpolation=cv2.INTER_CUBIC)
-'''
+    if max_height_right is not None and max_height_left is not None:
+        break
 
-resize_image = scale_to_fill(img_not_scale)
-cv2.imwrite('hihi.png', resize_image)
-cv2.imshow('c', img_not_scale)
-cv2.imshow('b', resize_image)
+print max_height_left
+print max_height_left_pos
+print max_height_right
+print max_height_right_pos
 
 
+
+
+cv2.imshow('test', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

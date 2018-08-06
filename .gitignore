@@ -2,6 +2,7 @@
 word_examples_for_test/
 character_examples/
 .idea/
+./vscode
 
 #Auto gen gitignore
 # Byte-compiled / optimized / DLL files
