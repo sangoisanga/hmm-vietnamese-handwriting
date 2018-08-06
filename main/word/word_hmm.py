@@ -32,7 +32,7 @@ class WordHMM(SpecializedHMM):
         self.training_examples = training_examples
         self.alphabet = alphabet
         if (self.init_method == SpecializedHMM.InitMethod.count_based and
-                    len(self.training_examples) == 0):
+                len(self.training_examples) == 0):
             raise ValueError("Training examples needs to be provided when init method is count based")
 
         # Construct the state transition matrix
@@ -90,11 +90,6 @@ class WordHMM(SpecializedHMM):
             alphabet = self.alphabet
             alphabet_size = len(alphabet)
 
-            def convert_4_character(number):
-                myText = "0000"
-                myText += str(number)
-                return myText[len(myText) - 4: len(myText)]
-
             def count_position(position):
                 # pseudocount
                 use_pseudocount = True
@@ -112,11 +107,8 @@ class WordHMM(SpecializedHMM):
                 # Do the counting
                 for e in self.training_examples:
                     if position < len(e):
-                        print e
-                        character_index = alphabet.index(convert_4_character(e[position: position + 4]))
-                        print character_index
+                        character_index = alphabet.index(e[position])
                         count_list[character_index] = count_list[character_index] + 1
-                        position = position + 4
                 return count_list
 
             count_list = count_position(row_index - 1)
@@ -131,7 +123,7 @@ class WordHMM(SpecializedHMM):
             raise ValueError("Init Method Not Supported")
 
     def observation_from_word(self, word):
-        word_with_special_start_and_end = "@" + word + "$"
+        word_with_special_start_and_end = ["@"] + word + ["$"]
         observation_list = []
         for letter in word_with_special_start_and_end:
             observation_list.append(self.V.index(letter))
