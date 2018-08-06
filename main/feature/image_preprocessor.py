@@ -1,8 +1,11 @@
+import glob
+import math
 import os
 import sys
 import unittest
 
 import cv2
+import numpy
 
 
 def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
@@ -16,8 +19,7 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
 
     for x in range(0, width):
         for y in range(0, height):
-
-            if buffered_image[x][y] != 255:
+            if buffered_image[y][x] != 255:
                 if x > max_x:
                     max_x = x
                 if x < min_x:
@@ -31,7 +33,7 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
         max_x += 1
     if min_y == max_y:
         max_y += 1
-    sub_image = buffered_image[min_x:max_x, min_y:max_y]
+    sub_image = buffered_image[min_y:max_y, min_x:max_x]
 
     if sub_image is None:
         raise ValueError()
@@ -114,14 +116,137 @@ def extract_sorted_component_size_list(image_buffer):
     return component_lengths
 
 
+def extract_orientation_upper_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    max_height_left = None
+    max_height_right = None
+
+    max_height_left_pos = None
+    max_height_right_pos = None
+
+    for i in range(width):
+        if max_height_left is None:
+            for j in range(height):
+                if image_buffer[j][i] != 255:
+                    max_height_left = j
+                    max_height_left_pos = i
+                    break
+        if max_height_right is None:
+            temp_i = -(i + 1)
+            for j in range(height):
+                if image_buffer[j][temp_i] != 255:
+                    max_height_right = j
+                    max_height_right_pos = temp_i
+                    break
+
+        if max_height_right is not None and max_height_left is not None:
+            break
+
+    phi = 0
+    if max_height_right is not None:
+        dx = - max_height_right + max_height_left
+        dy = max_height_right_pos + width - max_height_left_pos
+        phi = numpy.arcsin(float(dx) / numpy.sqrt(dx ** 2 + dy ** 2))
+
+    # print (height - max_height_left, max_height_left_pos), (height - max_height_right, max_height_right_pos + width)
+    return phi
+
+
+def extract_orientation_lower_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    min_height_left = None
+    min_height_right = None
+
+    min_height_left_pos = None
+    min_height_right_pos = None
+
+    for i in range(width):
+        if min_height_left is None:
+            for temp_j in range(height):
+                j = -(temp_j + 1)
+                if image_buffer[j][i] != 255:
+                    min_height_left = j
+                    min_height_left_pos = i
+                    break
+        if min_height_right is None:
+            temp_i = -(i + 1)
+            for temp_j in range(height):
+                j = -(temp_j + 1)
+                if image_buffer[j][temp_i] != 255:
+                    min_height_right = j
+                    min_height_right_pos = temp_i
+                    break
+
+        if min_height_right is not None and min_height_left is not None:
+            break
+
+    phi = 0
+    if min_height_right is not None:
+        dx = - min_height_right + min_height_left
+        dy = min_height_right_pos + width - min_height_left_pos
+        phi = numpy.arcsin(float(dx) / numpy.sqrt(dx ** 2 + dy ** 2))
+
+    # print (height - min_height_left, min_height_left_pos), (height - min_height_right, min_height_right_pos + width)
+    return phi
+
+
+def divide_into_segments_new(nr_of_segments, image_buffer, overlap):
+    height, width = image_buffer.shape[:2]
+    segment_width = int(math.ceil(width / (1 + (nr_of_segments - 1) * (1 - overlap))))
+
+    def create_segment(start_pos):
+        end = start_pos + segment_width
+        if end > width:
+            this_segment_with = segment_width - (end - width)
+        # elif (width - end - segment_width) < 0:
+        #    this_segment_with = width - start_pos
+        else:
+            this_segment_with = segment_width
+        # print "This segment width: " + str(this_segment_with)
+        seg = image_buffer[0:height, start_pos:start_pos + this_segment_with]
+        return seg
+
+    def create_segment_starts(nr_of_segment, seg_width, o):
+        seg_start = [0]
+
+        next_start_width = int(math.ceil(seg_width * (1 - o)))
+
+        for i in range(1, nr_of_segment):
+            seg_start.append(seg_start[i - 1] + next_start_width)
+        return seg_start
+
+    segment_starts = create_segment_starts(nr_of_segments, segment_width, overlap)
+
+    # print segment_width
+    # print segment_starts
+
+    if len(segment_starts) > nr_of_segments:
+        del segment_starts[len(segment_starts) - 1]
+    segments = [create_segment(s) for s in segment_starts]
+    return segments
+
+
+def extract_upper_contour(image_buffer):
+    height, width = image_buffer.shape[:2]
+    result = []
+
+    for i in range(width):
+        for j in range(height):
+            if (image_buffer[j][i] != 255):
+                result.append(j)
+                break
+
+    return result
+
+
 class TestImagePreprocessor(unittest.TestCase):
 
     def get_example_image(self):
-        # example_dir = os.path.join(os.path.abspath('../..'), 'character_examples', 'A')
+        # example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data', 'A')
         # list_image = glob.glob1(example_dir, '*.png')
         # image_path_example = os.path.join(example_dir, list_image[0])
         example_dir = os.path.join(os.path.abspath('../..'), 'test_data')
-        image_path_example = os.path.join(example_dir, 'not_scale.png')
+        image_path_example = os.path.join(example_dir, 'A00.png')
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 
@@ -145,13 +270,46 @@ class TestImagePreprocessor(unittest.TestCase):
             self.write_image_to_disk("segment" + str(i) + ".png", s)
             i = i + 1
 
+    def test_divide_into_segments_new(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        i = 0
+        for s in segments:
+            self.write_image_to_disk("segment" + str(i) + ".png", s)
+            i = i + 1
+
     def test_extract_sorted_component_size_list(self):
         original_image = self.get_example_image()
         image = scale_to_fill(original_image)
-        segments = divide_into_segments(5, image)
+        segments = divide_into_segments_new(5, image, 0.5)
         for s in segments:
             component_size_list = extract_sorted_component_size_list(s)
             print(component_size_list)
+
+    def test_extract_orientation_upper_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(7, image, 0.5)
+        for s in segments:
+            orientation = extract_orientation_upper_contour(s)
+            print orientation
+
+    def test_extract_orientation_lower_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        for s in segments:
+            orientation = extract_orientation_lower_contour(s)
+            print orientation
+
+    def test_extract_upper_contour(self):
+        original_image = self.get_example_image()
+        image = scale_to_fill(original_image)
+        segments = divide_into_segments_new(5, image, 0.5)
+        for s in segments:
+            orientation = extract_upper_contour(s)
+            print orientation
 
 
 if __name__ == "__main__":
