@@ -79,6 +79,8 @@ class HMM(object):
         t = 0
         alpha[t] = [self.pi[i] * self.B[i][O[t]] for i in range(self.N)]
 
+        self.log.debug(str(alpha[t]))
+
         def append_scaling_to_scaling_factor_for_t(t):
             sum_alpha = sum(alpha[t - 1])
             if (sum_alpha == 0):
@@ -105,7 +107,7 @@ class HMM(object):
         T = len(O)
         self.calc_forward(O)
         beta = zeros(T, self.N)
-        scaling_factor = self.scaling_fact
+        scaling_factor = self.scaling_factor
         # initialization
         for i in range(self.N):
             beta[T - 1][i] = 1.0
@@ -331,7 +333,8 @@ class TestHMM(unittest.TestCase):
         ''' fixme '''
         h = HMM(self.pi, self.A, self.B, self.V)
         h.log.setLevel(logging.DEBUG)
-        h.calc_forward([0, 0])
+        a = h.calc_forward([0, 0])
+        print a
 
     def test_backward(self):
         '''fixme '''

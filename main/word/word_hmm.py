@@ -32,7 +32,7 @@ class WordHMM(SpecializedHMM):
         self.training_examples = training_examples
         self.alphabet = alphabet
         if (self.init_method == SpecializedHMM.InitMethod.count_based and
-                len(self.training_examples) == 0):
+                    len(self.training_examples) == 0):
             raise ValueError("Training examples needs to be provided when init method is count based")
 
         # Construct the state transition matrix
@@ -90,6 +90,11 @@ class WordHMM(SpecializedHMM):
             alphabet = self.alphabet
             alphabet_size = len(alphabet)
 
+            def convert_4_character(number):
+                myText = "0000"
+                myText += str(number)
+                return myText[len(myText) - 4: len(myText)]
+
             def count_position(position):
                 # pseudocount
                 use_pseudocount = True
@@ -107,8 +112,11 @@ class WordHMM(SpecializedHMM):
                 # Do the counting
                 for e in self.training_examples:
                     if position < len(e):
-                        character_index = alphabet.index(e[position])
+                        print e
+                        character_index = alphabet.index(convert_4_character(e[position: position + 4]))
+                        print character_index
                         count_list[character_index] = count_list[character_index] + 1
+                        position = position + 4
                 return count_list
 
             count_list = count_position(row_index - 1)
@@ -185,7 +193,6 @@ class WordHMM(SpecializedHMM):
 
 
 class TestHMM(unittest.TestCase):
-
     def test_with_word(self):
         word_hmm = WordHMM(word_length=3)
         if len(word_hmm.A) == 5:

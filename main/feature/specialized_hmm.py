@@ -1,6 +1,7 @@
-from random import random
-from hmm import HMM
 import unittest
+from random import random
+
+from hmm import HMM
 
 
 def random_list_with_sum(number_of_elements, sum):

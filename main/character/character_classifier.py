@@ -23,16 +23,18 @@ class CharacterClassifier(WordClassifier):
         '''
         See WordClassifier
         '''
-        if from_string_string != None:
+        if from_string_string is not None:
             # init from string
             # "\n\n"+ in the next row is for jython bug 1469
-            feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
-            nr_of_divisions, size_classification_factor = feature_extractor_parameters
-            self.feature_extractor = SimpleImageFeatureExtractor(nr_of_divisions,
-                                                                 size_classification_factor)
-            self.nr_of_segments = nr_of_divisions
+
+            # feature_extractor_parameters, classifier_string = eval("\n\n" + from_string_string)
+            feature_extractor_parameters, classifier_string = eval(from_string_string)
+
+            self.feature_extractor = SimpleImageFeatureExtractor(from_string=feature_extractor_parameters)
+            self.nr_of_segments = self.feature_extractor.nr_of_divisions
             super(CharacterClassifier, self).__init__(from_string_string=classifier_string)
             return
+
         # Feature extractor is voluntary but is necessary if the classify_image
         # method shall be used
         self.feature_extractor = feature_extractor
@@ -43,12 +45,17 @@ class CharacterClassifier(WordClassifier):
         new_characters_with_examples = []
         for label, examples in characters_with_examples:
             new_characters_with_examples.append((label * self.nr_of_segments, examples))
+
+        # Create alphabet for create HMM
+
+        alphabet = self.feature_extractor.get_observer_ids()
+
         super(CharacterClassifier, self).__init__(new_characters_with_examples,
                                                   nr_of_hmms_to_try,
                                                   fraction_of_examples_for_test,
                                                   train_with_examples,
                                                   initialisation_method,
-                                                  alphabet=SimpleImageFeatureExtractor.feature_ids)
+                                                  alphabet=alphabet)
 
     def classify_character_string(self, string):
         classification = super(CharacterClassifier, self).classify(string)
@@ -59,20 +66,20 @@ class CharacterClassifier(WordClassifier):
         return self.classify_character_string(string)
 
     def test(self, test_examples):
-        '''
+        """
         See WordClassifier.test()
-        '''
+        """
         new_test_examples = []
         for label, examples in test_examples:
             new_test_examples.append((label * self.nr_of_segments, examples))
         return super(CharacterClassifier, self).test(new_test_examples)
 
     def to_string(self):
-        if self.feature_extractor == None:
+        if self.feature_extractor is None:
             raise ValueError("feature_extractor must be given if the character classifier shall be stringified")
         else:
-            feature_extractor_parameters = (self.feature_extractor.nr_of_divisions,
-                                            self.feature_extractor.size_classification_factor)
+            feature_extractor_parameters = self.feature_extractor.get_feature_extractor_parameters()
+
         word_classifier_string = super(CharacterClassifier, self).to_string()
         return str((feature_extractor_parameters,
                     word_classifier_string))
@@ -80,17 +87,20 @@ class CharacterClassifier(WordClassifier):
 
 class TestCharacterClassifier(unittest.TestCase):
 
-    def test_with_two_characters(self):
+    def test_with_three_characters(self):
         # test with just two letters so A and B are copied to a
         # special dir that is deleted after the test
         base_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
         test_dir = os.path.join(base_dir, 'test')
         a_dir = os.path.join(base_dir, 'A')
         b_dir = os.path.join(base_dir, 'B')
+        c_dir = os.path.join(base_dir, 'C')
         shutil.copytree(a_dir, os.path.join(test_dir, 'A'))
         shutil.copytree(b_dir, os.path.join(test_dir, 'B'))
+        shutil.copytree(c_dir, os.path.join(test_dir, 'C'))
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
-                                               size_classification_factor=1.3)
+                                                size_classification_factor=1.3,
+                                                overlap=0.5)
         # Extract features
         training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
         print("training examples", training_examples)
@@ -111,7 +121,7 @@ class TestCharacterClassifier(unittest.TestCase):
             raise ValueError("Something is wrong with the test result")
         classifier.train()
         after = classifier.test(test_examples)
-        print("test_with_two_characters", "before", before, "after", after)
+        print("test_with_three_characters", "before", before, "after", after)
         shutil.rmtree(test_dir)
 
 
