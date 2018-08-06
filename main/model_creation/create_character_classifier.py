@@ -6,7 +6,6 @@ from main.feature.specialized_hmm import SpecializedHMM
 
 
 def create_character_classifier(save_to_file_path, factor, overlap, extract_mode):
-    #example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data')
     example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
     nr_of_training_examples = 90
     nr_of_test_examples = 10
@@ -38,5 +37,5 @@ def create_character_classifier(save_to_file_path, factor, overlap, extract_mode
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_new_data", 4.6, 0.5,
-                                SimpleImageFeatureExtractor.orientation_extract)
+    create_character_classifier("character_classifier_upper_contour_new", 4.6, 0.5,
+                                SimpleImageFeatureExtractor.upper_contour_extract)

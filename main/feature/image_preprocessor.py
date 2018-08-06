@@ -19,7 +19,8 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
 
     for x in range(0, width):
         for y in range(0, height):
-            if buffered_image[y][x] != 255:
+
+            if buffered_image[x][y] != 255:
                 if x > max_x:
                     max_x = x
                 if x < min_x:
@@ -33,7 +34,7 @@ def scale_to_fill(buffered_image):  # np array 1 channel, gray scale
         max_x += 1
     if min_y == max_y:
         max_y += 1
-    sub_image = buffered_image[min_y:max_y, min_x:max_x]
+    sub_image = buffered_image[min_x:max_x, min_y:max_y]
 
     if sub_image is None:
         raise ValueError()
@@ -242,11 +243,11 @@ def extract_upper_contour(image_buffer):
 class TestImagePreprocessor(unittest.TestCase):
 
     def get_example_image(self):
-        # example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data', 'A')
-        # list_image = glob.glob1(example_dir, '*.png')
-        # image_path_example = os.path.join(example_dir, list_image[0])
+        #example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data', 'A')
+        #list_image = glob.glob1(example_dir, '*.png')
+        #image_path_example = os.path.join(example_dir, list_image[0])
         example_dir = os.path.join(os.path.abspath('../..'), 'test_data')
-        image_path_example = os.path.join(example_dir, 'A00.png')
+        image_path_example = os.path.join(example_dir, 'i.png')
         image = cv2.imread(image_path_example, cv2.IMREAD_GRAYSCALE)
         return image
 

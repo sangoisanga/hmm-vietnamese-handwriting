@@ -19,10 +19,9 @@ def loadCharaterClassifier(name):
 
 if __name__ == "__main__":
 
-    test_dir = join(os.path.abspath('../'), 'test_of_tuan', 'new_training')
+    test_dir = join(os.path.abspath('../'), 'test_of_tuan')
     list_test = glob.glob1(test_dir, '*.png')
 
-    #character = loadCharaterClassifier('character_classifier_new_data.dat')
     character = loadCharaterClassifier('character_classifier_orientation_new.dat')
 
     for img in list_test:

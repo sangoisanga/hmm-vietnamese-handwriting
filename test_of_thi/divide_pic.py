@@ -1,7 +1,4 @@
 import cv2
-import os
-import glob
-from os.path import join
 
 
 def devide_hight(img, num_height):
@@ -43,8 +40,9 @@ def save_image(name, list_image):
         i += 1
 
 
-def main():
-    pic1 = "K.jpg"
+if __name__ == "__main__":
+
+    pic1 = "H.jpg"
     name = pic1[0:pic1.index('.')]
     # name = "V"
     img = cv2.imread(pic1)
@@ -64,26 +62,13 @@ def main():
     a = a1 +a2 +a3
     '''
 
-    a = devide_width(img, 10)
+    a = devide_width(img, 11)
     temp = []
     for i in range(len(a)):
         temp.extend(devide_hight(a[i], 4))
+
 
     save_image(name, temp)
 
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
-
-
-def renameAll():
-    outdir = join(os.path.abspath('.'), 'out')
-    listFile = glob.glob1(outdir, '*.png')
-    for img in listFile:
-        temp = cv2.imread(join(outdir, img))
-        newName = 'new_' + img
-        cv2.imwrite(join(outdir, newName), temp)
-
-
-if __name__ == "__main__":
-    # main()
-    renameAll()
