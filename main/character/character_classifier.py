@@ -75,7 +75,7 @@ class CharacterClassifier(WordClassifier):
         return super(CharacterClassifier, self).test(new_test_examples)
 
     def to_string(self):
-        if self.feature_extractor == None:
+        if self.feature_extractor is None:
             raise ValueError("feature_extractor must be given if the character classifier shall be stringified")
         else:
             feature_extractor_parameters = self.feature_extractor.get_feature_extractor_parameters()
