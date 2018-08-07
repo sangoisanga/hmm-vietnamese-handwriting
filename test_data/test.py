@@ -1,13 +1,7 @@
-import time
-import cv2
-import numpy as np
-
+from itertools import product
 
 if __name__ == '__main__':
-    img = cv2.imread('A00.png', cv2.IMREAD_GRAYSCALE)
-
-    print img.shape[:2]
-
-    cv2.imshow('test', img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    a = [1, 2, 3]
+    b = list(product(a, repeat=3))
+    print b
+    print len(b)

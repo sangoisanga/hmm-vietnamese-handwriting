@@ -6,6 +6,7 @@ from random import random
 
 import cv2
 
+from main.feature.feature_manager import FeatureManager
 from main.feature.image_example_dir import ImageExampleDir
 from main.feature.image_preprocessor import scale_to_fill, divide_into_segments, extract_sorted_component_size_list, \
     extract_orientation_upper_contour, divide_into_segments_new, extract_orientation_lower_contour, \
@@ -43,6 +44,7 @@ class SimpleImageFeatureExtractor(object):
                          '0010', '0011', '0012', '0013', '0014', '0015', '0016', '0017', '0018', '0019',
                          '0020', '0021', '0022', '0023', '0024', '0025', '0026', '0027', '0028', '0029',
                          '0030', '0031']
+    '''
     upper_contour_pattern_to_id = {
         'LLLLL': '0000', 'LLLLS': '0001', 'LLLSL': '0002', 'LLLSS': '0003', 'LLSLL': '0004', 'LLSLS': '0005',
         'LLSSL': '0006',
@@ -54,6 +56,9 @@ class SimpleImageFeatureExtractor(object):
         'SSLSS': '0027',
         'SSSLL': '0028', 'SSSLS': '0029', 'SSSSL': '0030', 'SSSSS': '0031'
     }
+    '''
+    feature_gen = FeatureManager(5, ['L', 'S'])
+    upper_contour_pattern_to_id = feature_gen.get_dictionary()
 
     orientation_extract = "ORIENTATION"
     component_extract = "COMPONENT"
@@ -467,6 +472,11 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         feature_string = extractor.extract_upper_contour_string(image)
         print("test_extract_upper_contour_string")
         print(feature_string)
+
+    def test_upper_contour_pattern_to_id(self):
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5)
+        print extractor.upper_contour_pattern_to_id
+        print len(extractor.upper_contour_pattern_to_id)
 
 
 if __name__ == "__main__":
