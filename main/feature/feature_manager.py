@@ -8,7 +8,6 @@ alphabet_value = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 class FeatureManager:
     def __init__(self, len_of_key, alphabet_key, len_of_key_back=None, alphabet_key_back=None):
         """
-
         :param len_of_key: do dai cua chuoi feature dau tien
         :param alphabet_key: tap cac cach chon cua feature 1
         :param len_of_key_back: do dai cua chuoi feature thu hai, noi voi chuoi dau
@@ -94,7 +93,9 @@ class TestFeatureManager(unittest.TestCase):
         print self.feature.get_dictionary()
 
     def test_get_dictionary_merge(self):
-        print self.feature.get_dictionary(is_merge_list=True)
+        a = self.feature.get_dictionary(is_merge_list=True)
+        print a
+        print [v for k, v in a.items()]
 
 
 if __name__ == '__main__':

@@ -248,12 +248,13 @@ class SimpleImageFeatureExtractor(object):
         lower_coutour_string = self.extract_orientation_lower_contour_string(buffered_image)
 
         orientation_string = []
-
+        raw = []
         for i in range(len(upper_coutour_string)):
             pattern = upper_coutour_string[i] + lower_coutour_string[i]
+            raw.append(pattern)
             orientation_string.extend(self.orientation_pattern_to_id[pattern])
 
-        return orientation_string
+        return orientation_string, raw
 
     def extract_upper_contour_segment(self, buffered_image):
         feature = extract_upper_contour(buffered_image)
