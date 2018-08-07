@@ -123,7 +123,7 @@ class WordHMM(SpecializedHMM):
             raise ValueError("Init Method Not Supported")
 
     def observation_from_word(self, word):
-        word_with_special_start_and_end = "@" + word + "$"
+        word_with_special_start_and_end = ["@"] + word + ["$"]
         observation_list = []
         for letter in word_with_special_start_and_end:
             observation_list.append(self.V.index(letter))

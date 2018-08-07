@@ -38,5 +38,5 @@ def create_character_classifier(save_to_file_path, factor, overlap, extract_mode
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_new_data", 4.6, 0.5,
-                                SimpleImageFeatureExtractor.orientation_extract)
+    create_character_classifier("character_classifier_component", 4.6, 0.5,
+                                SimpleImageFeatureExtractor.component_extract)

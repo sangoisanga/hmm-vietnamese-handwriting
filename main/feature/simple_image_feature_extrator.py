@@ -141,7 +141,7 @@ class SimpleImageFeatureExtractor(object):
             else:
                 return "N"
 
-        feature_string = ""
+        feature_string = []
         for i in range(self.nr_of_divisions):
             segment_comp_sizes = features_for_segments[i]
             segment = segments[i]
@@ -150,8 +150,7 @@ class SimpleImageFeatureExtractor(object):
             for size in segment_comp_sizes:
                 segment_feature_string = (segment_feature_string +
                                           classify_component(size, segment_width))
-            feature_string = (feature_string +
-                              self.component_pattern_to_id[segment_feature_string])
+            feature_string.extend(self.component_pattern_to_id[segment_feature_string])
         return feature_string
 
     def extract_orientation_upper_contour_string(self, buffered_image):
@@ -223,11 +222,11 @@ class SimpleImageFeatureExtractor(object):
         upper_coutour_string = self.extract_orientation_upper_contour_string(buffered_image)
         lower_coutour_string = self.extract_orientation_lower_contour_string(buffered_image)
 
-        orientation_string = ""
+        orientation_string = []
 
         for i in range(len(upper_coutour_string)):
             pattern = upper_coutour_string[i] + lower_coutour_string[i]
-            orientation_string += self.orientation_pattern_to_id[pattern]
+            orientation_string.extend(self.orientation_pattern_to_id[pattern])
 
         return orientation_string
 
