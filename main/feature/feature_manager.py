@@ -6,15 +6,16 @@ alphabet_value = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 
 
 class FeatureManager:
-    def __init__(self, len_of_key, alphabet_key, len_of_key_back=None, alphabet_key_back=None):
+    def __init__(self, len_of_key, alphabet_key, list_other=tuple(), list_component=None):
         """
         :param len_of_key: do dai cua chuoi feature dau tien
         :param alphabet_key: tap cac cach chon cua feature 1
         :param len_of_key_back: do dai cua chuoi feature thu hai, noi voi chuoi dau
         :param alphabet_key_back: tap cac cach chon cua feature 2
         """
-        self.len_of_key_back = len_of_key_back
-        self.alphabet_key_back = alphabet_key_back
+        self.list_component = list_component
+        self.num_of_other_feature = len(list_other)
+        self.list_other = list_other
         self.len_of_key = len_of_key
         self.alphabet_key = alphabet_key
         self.alphabet_value = alphabet_value
@@ -38,20 +39,31 @@ class FeatureManager:
             list_key = ["".join(i) for i in list(list_key_separate)]
             return list_key
         else:
-            if self.alphabet_key_back is None:
-                raise ValueError("Alphabet of list key is missing")
-            list_key_separate = product(self.alphabet_key_back, repeat=self.len_of_key_back)
-            list_key = ["".join(i) for i in list(list_key_separate)]
-            return list_key
+            if self.num_of_other_feature == 0:
+                raise ValueError("List other feature must not empty!")
+            else:
+                list_of_list_key = []
+                for length, alphabet in self.list_other:
+                    list_key_separate = product(alphabet, repeat=length)
+                    list_key = ["".join(i) for i in list(list_key_separate)]
+                    list_of_list_key.append(list_key)
+            return list_of_list_key
 
     def get_list_key_merge(self):
         list_key_front = self.get_list_key()
         list_key_back = self.get_list_key(is_back=True)
-        out = []
-        for front in list_key_front:
-            for back in list_key_back:
-                out.append(front + back)
-        return out
+
+        start_function = "product(list_key_front"
+        end_function = ",repeat=1)"
+
+        for i in range(len(list_key_back)):
+            start_function += ",list_key_back[" + str(i) + "]"
+        if self.list_component is not None:
+            start_function += ",self.list_component"
+        print start_function + end_function
+        out = list(eval(start_function + end_function))
+        list_key = ["".join(i) for i in out]
+        return list_key
 
     def get_list_value(self, num_of_key_merge=0):
 
@@ -75,9 +87,12 @@ class FeatureManager:
 class TestFeatureManager(unittest.TestCase):
 
     def setUp(self):
-        alphabet_key = ['L', 'S', 'N']
+        alphabet_key = ['L', 'S']
         alphabet_key_back = ['a', 'b']
-        self.feature = FeatureManager(3, alphabet_key, 2, alphabet_key_back)
+        alphabet_key_back2 = ['P', 'Q']
+
+        self.feature = FeatureManager(3, alphabet_key, [(2, alphabet_key_back), (2, alphabet_key_back2)],
+                                      ["ABC", "BAC"])
 
     def test_get_list_key(self):
         self.assertEqual(len(self.feature.get_list_key()), self.feature.num_of_key)

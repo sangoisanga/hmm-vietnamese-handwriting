@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     # character = loadCharaterClassifier('character_classifier_new_data.dat')
     # character = loadCharaterClassifier('character_classifier_orientation_new.dat')
-    character = loadCharaterClassifier('character_classifier_upper_contour.dat')
+    character = loadCharaterClassifier('character_classifier_full.dat')
 
     for img in list_test:
         image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)

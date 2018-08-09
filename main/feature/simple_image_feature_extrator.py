@@ -14,10 +14,10 @@ from main.feature.image_preprocessor import scale_to_fill, divide_into_segments,
 
 
 class SimpleImageFeatureExtractor(object):
-    '''
+    """
     A class used to extract a sequence of features from an image that
     may be used as training observations for a HMM.
-    '''
+    """
     component_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
     component_pattern_to_id = {"LLL": "a",
                                "LLS": "b",
@@ -29,40 +29,21 @@ class SimpleImageFeatureExtractor(object):
                                "SSN": "h",
                                "SNN": "i",
                                "NNN": "j"}
-    orientation_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-    orientation_pattern_to_id = {"LL": "a",
-                                 "LS": "b",
-                                 "LN": "c",
-                                 "SL": "d",
-                                 "SS": "e",
-                                 "SN": "f",
-                                 "NL": "g",
-                                 "NS": "h",
-                                 "NN": "i"}
+    component_pattern = ["LLL", "LLS", "LSS", "LSN", "LLN", "LNN", "SSS", "SSN", "SNN", "NNN"]
 
-    upper_contour_ids = ['0000', '0001', '0002', '0003', '0004', '0005', '0006', '0007', '0008', '0009',
-                         '0010', '0011', '0012', '0013', '0014', '0015', '0016', '0017', '0018', '0019',
-                         '0020', '0021', '0022', '0023', '0024', '0025', '0026', '0027', '0028', '0029',
-                         '0030', '0031']
-    '''
-    upper_contour_pattern_to_id = {
-        'LLLLL': '0000', 'LLLLS': '0001', 'LLLSL': '0002', 'LLLSS': '0003', 'LLSLL': '0004', 'LLSLS': '0005',
-        'LLSSL': '0006',
-        'LLSSS': '0007', 'LSLLL': '0008', 'LSLLS': '0009', 'LSLSL': '0010', 'LSLSS': '0011', 'LSSLL': '0012',
-        'LSSLS': '0013',
-        'LSSSL': '0014', 'LSSSS': '0015', 'SLLLL': '0016', 'SLLLS': '0017', 'SLLSL': '0018', 'SLLSS': '0019',
-        'SLSLL': '0020',
-        'SLSLS': '0021', 'SLSSL': '0022', 'SLSSS': '0023', 'SSLLL': '0024', 'SSLLS': '0025', 'SSLSL': '0026',
-        'SSLSS': '0027',
-        'SSSLL': '0028', 'SSSLS': '0029', 'SSSSL': '0030', 'SSSSS': '0031'
-    }
-    '''
-    feature_gen = FeatureManager(5, ['L', 'S'])
-    upper_contour_pattern_to_id = feature_gen.get_dictionary()
+    orientation_fm = FeatureManager(2, ['L', 'S', 'N'])
+    orientation_pattern_to_id = orientation_fm.get_dictionary()
+
+    upper_contour_fm = FeatureManager(5, ['L', 'S'])
+    upper_contour_pattern_to_id = upper_contour_fm.get_dictionary()
+
+    full_fm = FeatureManager(2, ['L', 'S', 'N'], [(5, ['L', 'S'])], component_pattern)
+    full_pattern2id = full_fm.get_dictionary(True)
 
     orientation_extract = "ORIENTATION"
     component_extract = "COMPONENT"
     upper_contour_extract = "UPPER_CONTOUR"
+    full_extract = "FULL"
 
     def __init__(self,
                  nr_of_divisions=7,
@@ -98,11 +79,13 @@ class SimpleImageFeatureExtractor(object):
 
     def get_observer_ids(self):
         if self.extract_mode == self.orientation_extract:
-            return self.orientation_ids
+            return [v for k, v in self.orientation_pattern_to_id.items()]
         elif self.extract_mode == self.component_extract:
             return self.component_ids
         elif self.extract_mode == self.upper_contour_extract:
-            return self.upper_contour_ids
+            return [v for k, v in self.upper_contour_pattern_to_id.items()]
+        elif self.extract_mode == self.full_extract:
+            return [v for k, v in self.full_pattern2id.items()]
         else:
             raise ValueError("Can not detect extract mode")
 
@@ -134,6 +117,7 @@ class SimpleImageFeatureExtractor(object):
         N = none
 
         """
+
         scaled_image = scale_to_fill(buffered_image)
         segments = []
         if self.overlap is None:
@@ -167,6 +151,7 @@ class SimpleImageFeatureExtractor(object):
                 return "N"
 
         feature_string = []
+        raw = []
         for i in range(self.nr_of_divisions):
             segment_comp_sizes = features_for_segments[i]
             segment = segments[i]
@@ -175,8 +160,9 @@ class SimpleImageFeatureExtractor(object):
             for size in segment_comp_sizes:
                 segment_feature_string = (segment_feature_string +
                                           classify_component(size, segment_width))
+            raw.append(segment_feature_string)
             feature_string.extend(self.component_pattern_to_id[segment_feature_string])
-        return feature_string
+        return feature_string, raw
 
     def extract_orientation_upper_contour_string(self, buffered_image):
         scaled_image = scale_to_fill(buffered_image)
@@ -291,9 +277,22 @@ class SimpleImageFeatureExtractor(object):
         feature = [self.extract_upper_contour_segment(s) for s in segments]
 
         feature_string = []
-
+        raw = []
         for i in range(self.nr_of_divisions):
             feature_string = feature_string + [self.upper_contour_pattern_to_id[feature[i]]]
+            raw.append(feature[i])
+        return feature_string, raw
+
+    def extract_full_feature_string(self, buffered_image):
+        scaled_image = scale_to_fill(buffered_image)
+
+        orientation = self.extract_orientation_string(scaled_image)[1]
+        upper_contour = self.extract_upper_contour_string(scaled_image)[1]
+        component = self.extract_component_string(scaled_image)[1]
+
+        feature_string = []
+        for i in range(self.nr_of_divisions):
+            feature_string = feature_string + [self.full_pattern2id[orientation[i] + upper_contour[i] + component[i]]]
         return feature_string
 
     def extract_feature_string(self, buffered_image):
@@ -304,8 +303,10 @@ class SimpleImageFeatureExtractor(object):
             feature_string = self.extract_orientation_string(buffered_image)
         elif self.extract_mode == self.upper_contour_extract:
             feature_string = self.extract_upper_contour_string(buffered_image)
+        elif self.extract_mode == self.full_extract:
+            feature_string = self.extract_full_feature_string(buffered_image)
         else:
-            feature_string = ""
+            raise ValueError("Not defined extract function!")
 
         return feature_string
 
@@ -478,6 +479,14 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5)
         print extractor.upper_contour_pattern_to_id
         print len(extractor.upper_contour_pattern_to_id)
+
+    def test_extract_full_feature_string(self):
+        image = self.get_example_image()
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5,
+                                                extract_mode=SimpleImageFeatureExtractor.full_extract)
+        feature_string = extractor.extract_full_feature_string(image)
+        print("test_extract_full_feature_string")
+        print(feature_string)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 import os
+import sys
 
 from main.character.character_classifier import CharacterClassifier
 from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtractor
@@ -6,7 +7,7 @@ from main.feature.specialized_hmm import SpecializedHMM
 
 
 def create_character_classifier(save_to_file_path, factor, overlap, extract_mode):
-    #example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data')
+    # example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data')
     example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
     nr_of_training_examples = 90
     nr_of_test_examples = 10
@@ -38,5 +39,10 @@ def create_character_classifier(save_to_file_path, factor, overlap, extract_mode
 
 
 if __name__ == '__main__':
-    create_character_classifier("character_classifier_upper_contour", 4.6, 0.5,
-                                SimpleImageFeatureExtractor.upper_contour_extract)
+    old_rec = sys.getrecursionlimit()
+    sys.setrecursionlimit(10000)
+
+    create_character_classifier("character_classifier_full", 4.6, 0.5,
+                                SimpleImageFeatureExtractor.full_extract)
+
+    sys.setrecursionlimit(old_rec)
