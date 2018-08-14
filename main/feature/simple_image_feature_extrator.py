@@ -1,10 +1,12 @@
 import glob
+import math
 import os
 import unittest
 from random import random
 
 import cv2
 
+from main.feature.feature_manager import FeatureManager
 from main.feature.image_example_dir import ImageExampleDir
 from main.feature.image_preprocessor import scale_to_fill, divide_into_segments, extract_sorted_component_size_list, \
     extract_orientation_upper_contour, divide_into_segments_new, extract_orientation_lower_contour, \
@@ -12,10 +14,10 @@ from main.feature.image_preprocessor import scale_to_fill, divide_into_segments,
 
 
 class SimpleImageFeatureExtractor(object):
-    '''
+    """
     A class used to extract a sequence of features from an image that
     may be used as training observations for a HMM.
-    '''
+    """
     component_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
     component_pattern_to_id = {"LLL": "a",
                                "LLS": "b",
@@ -27,19 +29,21 @@ class SimpleImageFeatureExtractor(object):
                                "SSN": "h",
                                "SNN": "i",
                                "NNN": "j"}
-    orientation_ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-    orientation_pattern_to_id = {"LL": "a",
-                                 "LS": "b",
-                                 "LN": "c",
-                                 "SL": "d",
-                                 "SS": "e",
-                                 "SN": "f",
-                                 "NL": "g",
-                                 "NS": "h",
-                                 "NN": "i"}
+    component_pattern = ["LLL", "LLS", "LSS", "LSN", "LLN", "LNN", "SSS", "SSN", "SNN", "NNN"]
+
+    orientation_fm = FeatureManager(2, ['L', 'S', 'N'])
+    orientation_pattern_to_id = orientation_fm.get_dictionary()
+
+    upper_contour_fm = FeatureManager(5, ['L', 'S'])
+    upper_contour_pattern_to_id = upper_contour_fm.get_dictionary()
+
+    full_fm = FeatureManager(2, ['L', 'S', 'N'], [(5, ['L', 'S'])], component_pattern)
+    full_pattern2id = full_fm.get_dictionary(True)
 
     orientation_extract = "ORIENTATION"
     component_extract = "COMPONENT"
+    upper_contour_extract = "UPPER_CONTOUR"
+    full_extract = "FULL"
 
     def __init__(self,
                  nr_of_divisions=7,
@@ -75,9 +79,13 @@ class SimpleImageFeatureExtractor(object):
 
     def get_observer_ids(self):
         if self.extract_mode == self.orientation_extract:
-            return self.orientation_ids
+            return [v for k, v in self.orientation_pattern_to_id.items()]
         elif self.extract_mode == self.component_extract:
             return self.component_ids
+        elif self.extract_mode == self.upper_contour_extract:
+            return [v for k, v in self.upper_contour_pattern_to_id.items()]
+        elif self.extract_mode == self.full_extract:
+            return [v for k, v in self.full_pattern2id.items()]
         else:
             raise ValueError("Can not detect extract mode")
 
@@ -109,6 +117,7 @@ class SimpleImageFeatureExtractor(object):
         N = none
 
         """
+
         scaled_image = scale_to_fill(buffered_image)
         segments = []
         if self.overlap is None:
@@ -141,7 +150,8 @@ class SimpleImageFeatureExtractor(object):
             else:
                 return "N"
 
-        feature_string = ""
+        feature_string = []
+        raw = []
         for i in range(self.nr_of_divisions):
             segment_comp_sizes = features_for_segments[i]
             segment = segments[i]
@@ -150,9 +160,9 @@ class SimpleImageFeatureExtractor(object):
             for size in segment_comp_sizes:
                 segment_feature_string = (segment_feature_string +
                                           classify_component(size, segment_width))
-            feature_string = (feature_string +
-                              self.component_pattern_to_id[segment_feature_string])
-        return feature_string
+            raw.append(segment_feature_string)
+            feature_string.extend(self.component_pattern_to_id[segment_feature_string])
+        return feature_string, raw
 
     def extract_orientation_upper_contour_string(self, buffered_image):
         scaled_image = scale_to_fill(buffered_image)
@@ -223,43 +233,80 @@ class SimpleImageFeatureExtractor(object):
         upper_coutour_string = self.extract_orientation_upper_contour_string(buffered_image)
         lower_coutour_string = self.extract_orientation_lower_contour_string(buffered_image)
 
-        orientation_string = ""
-
+        orientation_string = []
+        raw = []
         for i in range(len(upper_coutour_string)):
             pattern = upper_coutour_string[i] + lower_coutour_string[i]
-            orientation_string += self.orientation_pattern_to_id[pattern]
+            raw.append(pattern)
+            orientation_string.extend(self.orientation_pattern_to_id[pattern])
 
-        return orientation_string
+        return orientation_string, raw
 
-    def extract_upper_contour_string(self, buffered_image):
-        scaled_image = scale_to_fill(buffered_image)
-        image_height = buffered_image.shape[1]
-        segments = divide_into_segments(self.nr_of_divisions, scaled_image)
+    def extract_upper_contour_segment(self, buffered_image):
+        feature = extract_upper_contour(buffered_image)
+        image_height = buffered_image.shape[0]
+        number_of_contour = 5
 
-        feature = [extract_upper_contour(s) for s in segments]
+        while (len(feature) < number_of_contour):
+            feature.append(0)
+        step = int(math.ceil(float(len(feature)) / number_of_contour))
+
+        feature_for_segment = []
+        for i in range(0, len(feature), step):
+            feature_for_segment.append(feature[i])
+
+        if (len(feature_for_segment) < number_of_contour):
+            feature_for_segment.append(feature[len(feature) - 1])
 
         def classify_component(upper_contour):
             if upper_contour > (image_height * self.contour_upper_factor):
                 return "L"
-            elif upper_contour < (image_height * self.contour_upper_factor):
+            elif upper_contour <= (image_height * self.contour_upper_factor):
                 return "S"
-            else:
-                return "N"
 
         feature_string = ""
 
-        for i in range(self.nr_of_divisions):
+        for i in range(number_of_contour):
             feature_string = feature_string + classify_component(feature[i])
+        return feature_string
+
+    def extract_upper_contour_string(self, buffered_image):
+        scaled_image = scale_to_fill(buffered_image)
+        segments = divide_into_segments(self.nr_of_divisions, scaled_image)
+
+        feature = [self.extract_upper_contour_segment(s) for s in segments]
+
+        feature_string = []
+        raw = []
+        for i in range(self.nr_of_divisions):
+            feature_string = feature_string + [self.upper_contour_pattern_to_id[feature[i]]]
+            raw.append(feature[i])
+        return feature_string, raw
+
+    def extract_full_feature_string(self, buffered_image):
+        scaled_image = scale_to_fill(buffered_image)
+
+        orientation = self.extract_orientation_string(scaled_image)[1]
+        upper_contour = self.extract_upper_contour_string(scaled_image)[1]
+        component = self.extract_component_string(scaled_image)[1]
+
+        feature_string = []
+        for i in range(self.nr_of_divisions):
+            feature_string = feature_string + [self.full_pattern2id[orientation[i] + upper_contour[i] + component[i]]]
         return feature_string
 
     def extract_feature_string(self, buffered_image):
 
         if self.extract_mode == self.component_extract:
-            feature_string = self.extract_component_string(buffered_image)
+            feature_string = self.extract_component_string(buffered_image)[0]
         elif self.extract_mode == self.orientation_extract:
-            feature_string = self.extract_orientation_string(buffered_image)
+            feature_string = self.extract_orientation_string(buffered_image)[0]
+        elif self.extract_mode == self.upper_contour_extract:
+            feature_string = self.extract_upper_contour_string(buffered_image)[0]
+        elif self.extract_mode == self.full_extract:
+            feature_string = self.extract_full_feature_string(buffered_image)
         else:
-            feature_string = ""
+            raise ValueError("Not defined extract function!")
 
         return feature_string
 
@@ -355,8 +402,8 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                 size_classification_factor=1.3,
                                                 overlap=0.5,
-                                                extract_mode=SimpleImageFeatureExtractor.component_extract)
-        example_dir_path = os.path.join(os.path.abspath('../..'), 'character_examples', 'I')
+                                                extract_mode=SimpleImageFeatureExtractor.upper_contour_extract)
+        example_dir_path = os.path.join(os.path.abspath('../..'), 'character_examples', 'A')
         training_examples, test_examples = extractor.extract_feature_strings_for_dir(
             example_dir_path,
             nr_of_training_examples=90,
@@ -419,6 +466,26 @@ class TestSimpleImageFeatureExtractor(unittest.TestCase):
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5)
         feature_string = extractor.extract_orientation_string(image)
         print("test_extract_orientation_string")
+        print(feature_string)
+
+    def test_extract_upper_contour_string(self):
+        image = self.get_example_image()
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5)
+        feature_string = extractor.extract_upper_contour_string(image)
+        print("test_extract_upper_contour_string")
+        print(feature_string)
+
+    def test_upper_contour_pattern_to_id(self):
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5)
+        print extractor.upper_contour_pattern_to_id
+        print len(extractor.upper_contour_pattern_to_id)
+
+    def test_extract_full_feature_string(self):
+        image = self.get_example_image()
+        extractor = SimpleImageFeatureExtractor(nr_of_divisions=5, overlap=0.5,
+                                                extract_mode=SimpleImageFeatureExtractor.full_extract)
+        feature_string = extractor.extract_full_feature_string(image)
+        print("test_extract_full_feature_string")
         print(feature_string)
 
 
