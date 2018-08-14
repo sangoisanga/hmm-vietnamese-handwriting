@@ -298,11 +298,11 @@ class SimpleImageFeatureExtractor(object):
     def extract_feature_string(self, buffered_image):
 
         if self.extract_mode == self.component_extract:
-            feature_string = self.extract_component_string(buffered_image)
+            feature_string = self.extract_component_string(buffered_image)[0]
         elif self.extract_mode == self.orientation_extract:
-            feature_string = self.extract_orientation_string(buffered_image)
+            feature_string = self.extract_orientation_string(buffered_image)[0]
         elif self.extract_mode == self.upper_contour_extract:
-            feature_string = self.extract_upper_contour_string(buffered_image)
+            feature_string = self.extract_upper_contour_string(buffered_image)[0]
         elif self.extract_mode == self.full_extract:
             feature_string = self.extract_full_feature_string(buffered_image)
         else:

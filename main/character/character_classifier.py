@@ -100,7 +100,8 @@ class TestCharacterClassifier(unittest.TestCase):
         shutil.copytree(c_dir, os.path.join(test_dir, 'C'))
         extractor = SimpleImageFeatureExtractor(nr_of_divisions=7,
                                                 size_classification_factor=1.3,
-                                                overlap=0.5)
+                                                overlap=0.5,
+                                                extract_mode=SimpleImageFeatureExtractor.orientation_extract)
         # Extract features
         training_examples, test_examples = extractor.extract_training_and_test_examples(test_dir, 90, 10)
         print("training examples", training_examples)
