@@ -4,12 +4,12 @@ import unittest
 
 from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtractor
 from main.feature.specialized_hmm import SpecializedHMM
-from main.word.word_classifier import WordClassifier
+from main.character.base_characters_classifier import BaseCharacterClassifier
 
 
-class CharacterClassifier(WordClassifier):
+class CharacterClassifier(BaseCharacterClassifier):
     '''
-    Works as WordClassifier with some extra features for character classification
+    Works as BaseCharacterClassifier with some extra features for character classification
     '''
 
     def __init__(self,
@@ -21,7 +21,7 @@ class CharacterClassifier(WordClassifier):
                  feature_extractor=None,
                  from_string_string=None):
         '''
-        See WordClassifier
+        See BaseCharacterClassifier
         '''
         if from_string_string is not None:
             # init from string
@@ -67,7 +67,7 @@ class CharacterClassifier(WordClassifier):
 
     def test(self, test_examples):
         """
-        See WordClassifier.test()
+        See BaseCharacterClassifier.test()
         """
         new_test_examples = []
         for label, examples in test_examples:

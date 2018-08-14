@@ -3,10 +3,10 @@ from copy import deepcopy
 
 from main.feature.specialized_hmm import SpecializedHMM
 from main.word.word_examples_generator import get_example_alphabet, generate_examples_for_words
-from main.word.word_hmm import WordHMM
+from main.character.character_hmm import CharacterHMM
 
 
-class WordClassifier(object):
+class BaseCharacterClassifier(object):
     '''
     Classifies a possible misspelled word to a word
     '''
@@ -36,7 +36,7 @@ class WordClassifier(object):
             words, stringified_hmms = eval("\n\n" + from_string_string)
 
             def destringify_hmm(hmm_string):
-                return WordHMM(from_string_string=hmm_string)
+                return CharacterHMM(from_string_string=hmm_string)
 
             hmms = map(destringify_hmm, stringified_hmms)
             self.hmms_for_words = hmms
@@ -85,12 +85,12 @@ class WordClassifier(object):
         hmms = []
         for i in range(nr_of_hmms_to_try):
             if (self.initialisation_method == SpecializedHMM.InitMethod.count_based):
-                hmm = WordHMM(len(word),
+                hmm = CharacterHMM(len(word),
                               SpecializedHMM.InitMethod.count_based,
                               training_examples,
                               alphabet=self.alphabet)
             elif (self.initialisation_method == SpecializedHMM.InitMethod.random):
-                hmm = WordHMM(len(word),
+                hmm = CharacterHMM(len(word),
                               SpecializedHMM.InitMethod.random,
                               alphabet=self.alphabet)
             else:
@@ -126,7 +126,6 @@ class WordClassifier(object):
                        (self.words[index[2]], sorted_list[2]))
         return word_return
 
-
     def test(self, test_examples):
         '''
         Parameter:
@@ -156,42 +155,6 @@ class WordClassifier(object):
 
         stringified_hmms = map(hmm_to_string, self.hmms_for_words)
         return str((self.words, stringified_hmms))
-
-
-class TestWordClassifier(unittest.TestCase):
-
-    def test_create_classifier(self):
-        words = ["pig", "dog", "cat", "bee", "ape", "elk", "hen", "cow"]
-        examples = generate_examples_for_words(words, number_of_examples=1000)
-        classifier = WordClassifier(examples,
-                                    nr_of_hmms_to_try=1,
-                                    fraction_of_examples_for_test=0)
-
-        def test_classify(word):
-            print("classification of " + word + " = " + classifier.classify(word))
-
-        # test
-        map(test_classify, words)
-        test_examples = ["iig", "dag", "catt", "bae", "appe", "elck", "hel", "row"]
-        map(test_classify, test_examples)
-        pass
-        # ["dog","cat","pig","love","hate",
-        #             "scala","python","summer","winter","night",
-        #             "daydream","nightmare","animal","happiness","sadness",
-        #             "friendliness","feminism","fascism","socialism","capitalism"]
-
-    def test_test_score(self):
-        words = ["pig", "dog", "cat", "bee", "ape", "elk", "hen", "cow"]
-        examples = generate_examples_for_words(words, number_of_examples=200)
-        classifier = WordClassifier(examples,
-                                    nr_of_hmms_to_try=1,
-                                    fraction_of_examples_for_test=0.3,
-                                    train_with_examples=False)
-        test_examples = generate_examples_for_words(words, number_of_examples=200)
-        before = classifier.test(test_examples)
-        classifier.train()
-        after = classifier.test(test_examples)
-        print("test_test_score", "before", before, "after", after)
 
 
 if __name__ == "__main__":

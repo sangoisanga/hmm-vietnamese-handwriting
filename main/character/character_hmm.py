@@ -5,7 +5,7 @@ from main.feature.specialized_hmm import SpecializedHMM, zeros_and_random_with_s
 from main.word.word_examples_generator import get_example_alphabet, generate_examples_for_word
 
 
-class WordHMM(SpecializedHMM):
+class CharacterHMM(SpecializedHMM):
     '''
     A HMM that represent a sequence of letter that form a word.
     It is implemented in the way described in the paper:
@@ -25,7 +25,7 @@ class WordHMM(SpecializedHMM):
         if from_string_string != None:
             # init from string
             pi, A, B, V = eval(from_string_string)
-            super(WordHMM, self).__init__(pi, A, B, V)
+            super(CharacterHMM, self).__init__(pi, A, B, V)
             return
         self.word_length = word_length
         self.init_method = init_method
@@ -68,7 +68,7 @@ class WordHMM(SpecializedHMM):
         # Initial state
         pi = zeros(self.number_of_states)
         pi[0] = 1
-        super(WordHMM, self).__init__(pi, A, B, V)
+        super(CharacterHMM, self).__init__(pi, A, B, V)
 
     def init_transition_matrix_row(self, row_index):
         if (self.init_method == SpecializedHMM.InitMethod.random):
@@ -187,63 +187,11 @@ class WordHMM(SpecializedHMM):
 class TestHMM(unittest.TestCase):
 
     def test_with_word(self):
-        word_hmm = WordHMM(word_length=3)
+        word_hmm = CharacterHMM(word_length=3)
         if len(word_hmm.A) == 5:
             pass
         else:
             raise ValueError("The size of A is incorrect")
-
-    def train_until_stop_condition_reached(self, word_hmm):
-        examples = generate_examples_for_word(word="dog", number_of_examples=500)
-        test_examples = generate_examples_for_word(word="dog", number_of_examples=40)
-        before = word_hmm.test(test_examples)
-        word_hmm.train_until_stop_condition_reached(examples, delta=0.0, test_examples=test_examples)
-        after = word_hmm.test(test_examples)
-        if (after > before):
-            print("test_train_until_stop_condition_reached", "before", before, "after", after)
-            pass
-        else:
-            raise "The training does not seem to work good before " + str(before) + " after " + str(after)
-
-    def test_train_until_stop_condition_reached(self):
-        print("random init")
-        self.train_until_stop_condition_reached(WordHMM(word_length=3))
-        print("count based init")
-        init_training_examples = generate_examples_for_word(word="dog", number_of_examples=40)
-        self.train_until_stop_condition_reached(WordHMM(3,
-                                                        SpecializedHMM.InitMethod.count_based,
-                                                        init_training_examples))
-
-    #    def test_train_with_stop_condition_bakis(self):
-    #        word_hmm = WordHMM("dog")
-    #        examples = generate_examples_for_word(word="dog", number_of_examples=1000)
-    #        test_examples = generate_examples_for_word(word="dog", number_of_examples=10)
-    #        score = 0
-    #        old_score = -1
-    #        print("bakis")
-    #        while score > old_score:
-    #            old_score = score
-    #            word_hmm.train_baum_welch_bakis(examples)
-    #            score = word_hmm.test(test_examples)
-    #            print("score " + str(score))
-    #        print("final score " + str(score))
-
-    def test_train(self):
-        word_hmm = WordHMM(word_length=3)
-        examples = generate_examples_for_word(word="dog", number_of_examples=1000)
-        test_examples = generate_examples_for_word(word="dog", number_of_examples=10)
-        other_test_examples = generate_examples_for_word(word="pig", number_of_examples=10)
-        before = word_hmm.test(test_examples)
-        word_hmm.train_baum_welch(examples)
-        after = word_hmm.test(test_examples)
-        other_test_examples_test = word_hmm.test(other_test_examples)
-        if (after > before and other_test_examples_test < after):
-            print("test train", "before", before, "after", after)
-            pass
-        else:
-            raise ValueError("The training does not seem to work good")
-
-        print(["before", before, "after", after, "other_test_examples_test", other_test_examples_test])
 
 
 if __name__ == "__main__":
