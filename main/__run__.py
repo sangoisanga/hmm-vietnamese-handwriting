@@ -8,6 +8,10 @@ from main.character.character_classifier import CharacterClassifier
 
 
 def loadCharaterClassifier(name):
+    """
+    :param name: Path of data file
+    :return: Return CharacterClassifier object, created from data.
+    """
     base_dir = os.path.abspath('../')
     character_data_path = join(base_dir, 'main', 'model_creation', name)
     character_classifier_file = open(character_data_path, 'r')
@@ -20,7 +24,8 @@ def loadCharaterClassifier(name):
 
 if __name__ == "__main__":
 
-    test_dir = join(os.path.abspath('../'), 'test_of_tuan')
+    # Path of test data, read all file image *.png
+    test_dir = join(os.path.abspath('../'), 'test_image')
     list_test = glob.glob1(test_dir, '*.png')
 
     # character = loadCharaterClassifier('character_classifier_new_data.dat')
@@ -28,20 +33,11 @@ if __name__ == "__main__":
     character = loadCharaterClassifier('character_classifier_full.dat')
 
     list_test.sort()
-
     for img in list_test:
         image = cv2.imread(join(test_dir, img), cv2.IMREAD_GRAYSCALE)
-
-        print "Picture " + img + "\n"
-
+        print "Picture " + img + ""
         char = character.classify_image(image)
-        '''
-        print "Orientation" + " is: " \
-              + char[0][0][0] + ': ' + str(char[0][1]) + ", " \
-              + char[1][0][0] + ': ' + str(char[1][1]) + ", " \
-              + char[2][0][0] + ': ' + str(char[0][1]) + "\n"
-        '''
-        print "Orientation" + " is: " \
+        print "Top 3 results are: " \
               + char[0][0][0] + ", " \
               + char[1][0][0] + ", " \
               + char[2][0][0] + "\n"

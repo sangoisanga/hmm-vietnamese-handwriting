@@ -60,7 +60,7 @@ class FeatureManager:
             start_function += ",list_key_back[" + str(i) + "]"
         if self.list_component is not None:
             start_function += ",self.list_component"
-        print start_function + end_function
+        #print start_function + end_function
         out = list(eval(start_function + end_function))
         list_key = ["".join(i) for i in out]
         return list_key

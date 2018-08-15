@@ -7,6 +7,17 @@ from main.feature.specialized_hmm import SpecializedHMM
 
 
 def create_character_classifier(save_to_file_path, factor, overlap, extract_mode):
+    """
+    Function is used to create a Character classifier, future extractor, character from data
+    :param save_to_file_path: Path to save file + file names
+    :param factor: factor is used in component extractor
+    :param overlap: overlap is used in segment a image
+    :param extract_mode: 1 of below value, what feature is used when process an image
+        orientation_extract = "ORIENTATION"
+        component_extract = "COMPONENT"
+        upper_contour_extract = "UPPER_CONTOUR"
+        full_extract = "FULL"
+    """
     # example_dir = os.path.join(os.path.abspath('../..'), 'new_training_data')
     example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
     nr_of_training_examples = 90
