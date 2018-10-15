@@ -5,6 +5,25 @@ from main.character.character_classifier import CharacterClassifier
 from main.feature.simple_image_feature_extrator import SimpleImageFeatureExtractor
 from main.feature.specialized_hmm import SpecializedHMM
 
+def extract_feature_to_file(save_to_file_path, factor, overlap, extract_mode):
+
+    example_dir = os.path.join(os.path.abspath('../..'), 'character_examples')
+    nr_of_training_examples = 90
+    nr_of_test_examples = 10
+
+    extractor = SimpleImageFeatureExtractor(nr_of_divisions=11,
+                                            size_classification_factor=factor,
+                                            overlap=overlap,
+                                            extract_mode=extract_mode)
+
+    training_examples, test_examples = extractor.extract_training_and_test_examples(example_dir,
+                                                                                    nr_of_training_examples,
+                                                                                    nr_of_test_examples)
+    data_string = str((training_examples,test_examples))
+    file = open(save_to_file_path + ".dat", 'w')
+    file.write(data_string)
+    file.close()
+
 
 def create_character_classifier(save_to_file_path, factor, overlap, extract_mode):
     """
@@ -31,6 +50,8 @@ def create_character_classifier(save_to_file_path, factor, overlap, extract_mode
     training_examples, test_examples = extractor.extract_training_and_test_examples(example_dir,
                                                                                     nr_of_training_examples,
                                                                                     nr_of_test_examples)
+
+
 
     print training_examples
     print test_examples
